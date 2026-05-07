@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem C:\\\\Users\\\\Usuario\\\\Desktop\\\\Programacion\\\\PROYECTOS FULLSTACK\\\\red-social\\\\claude *)",
+      "PowerShell(ls \"C:\\\\Users\\\\Usuario\\\\Desktop\\\\Programacion\\\\PROYECTOS FULLSTACK\\\\red-social\" | Where-Object { $_.Name -notmatch \"node_modules\" })",
+      "PowerShell(ls \"C:\\\\Users\\\\Usuario\\\\Desktop\\\\Programacion\\\\PROYECTOS FULLSTACK\\\\red-social\\\\backend\" | Where-Object { $_.Name -notmatch \"node_modules\" })"
+    ]
+  }
+}
