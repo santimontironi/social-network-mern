@@ -28,6 +28,10 @@ class AuthRepository {
         const user = await User.findById(id);
         return user;
     }
+
+    async findUserVerified(email) {
+        return await User.findOne({ email, emailVerified: true });
+    }
 }
 
 const authRepository = new AuthRepository();

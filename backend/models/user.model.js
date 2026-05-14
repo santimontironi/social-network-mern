@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
     },
     bio: {
         type: String
+    },
+    emailVerified: {
+        type: Boolean,
+        default: false
     }
 }, {
     timestamps: true

@@ -1,6 +1,7 @@
 import AuthRepository from '../repository/auth.repository.js';
 import Bycrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import transport from '../config/email.config.js';
 
 class AuthController {
     async register(req, res) {
@@ -20,12 +21,67 @@ class AuthController {
 
             const hashedPassword = await Bycrypt.hash(password, 10);
 
+            const userConfirmed = await AuthRepository.findUserVerified(email);
+
+            if (userConfirmed) {
+                return res.status(400).json({ message: 'El email ya esta registrado y verificado' });
+            }
+
             await AuthRepository.register(username, email, hashedPassword, name, surname);
+
+            const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+            const URL = `${process.env.FRONTEND_URL}/verify-email/${token}`;
+
+            await transport.sendMail({
+                from: process.env.EMAIL_FROM,
+                to: email,
+                subject: 'Bienvenido a nuestra plataforma',
+                text: `Hola ${name}, gracias por registrarte en nuestra plataforma. Haz clic en el siguiente enlace para verificar tu email: ${URL}`,
+            });
 
             res.status(201).json({ message: 'User registered successfully' });
         }
         catch (error) {
             res.status(500).json({ message: 'Error registering user', error });
+        }
+    }
+
+    async verifyEmail(req, res) {
+        try{
+            const { token } = req.params;
+
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            const email = decoded.email;
+
+            const user = await AuthRepository.findByEmail(email);
+
+            if (!user) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+
+            const userVerified = await AuthRepository.findUserVerified(email);
+
+            if (userVerified) {
+                return res.status(400).json({ message: 'Email already verified' });
+            }
+
+            const verifiedUser = await AuthRepository.verifyEmail(email);
+
+            if(!verifiedUser) {
+                return res.status(500).json({ message: 'Error verifying email' });
+            }
+
+            const userAlreadyVerified = await AuthRepository.findUserVerified(email);
+
+            if (!userAlreadyVerified) {
+                return res.status(500).json({ message: 'Error verifying email' });
+            }
+
+            res.json({ message: 'Email verified successfully' });
+        }
+        catch (error) {
+            res.status(500).json({ message: 'Error verifying email', error });
         }
     }
 
