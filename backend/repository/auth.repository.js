@@ -23,6 +23,11 @@ class AuthRepository {
             ]
         });
     }
+
+    async findById(id) {
+        const user = await User.findById(id);
+        return user;
+    }
 }
 
 const authRepository = new AuthRepository();

@@ -20,9 +20,9 @@ class AuthController {
 
             const hashedPassword = await Bycrypt.hash(password, 10);
 
-            const user = await AuthRepository.register(username, email, hashedPassword, name, surname);
+            await AuthRepository.register(username, email, hashedPassword, name, surname);
 
-            res.status(201).json({ message: 'User registered successfully', user });
+            res.status(201).json({ message: 'User registered successfully' });
         }
         catch (error) {
             res.status(500).json({ message: 'Error registering user', error });
@@ -55,4 +55,33 @@ class AuthController {
             res.status(500).json({ message: 'Error logging in', error });
         }
     }
+
+    async dashboardUser(req, res) {
+        try{
+            const userId = req.user.id;
+            
+            const userFounded = await AuthRepository.findById(userId);
+
+            if (!userFounded) {
+                return res.status(404).json({ message: 'Usuario no encontrado' });
+            }
+
+            const userFoundedData = {
+                id: userFounded.id,
+                username: userFounded.username,
+                email: userFounded.email,
+                name: userFounded.name,
+                surname: userFounded.surname
+            };
+
+            res.json({ message: 'Dashboard accessed successfully', user: userFoundedData });
+        }
+        catch (error) {
+            res.status(500).json({ message: 'Error accessing dashboard', error });
+        }
+    }
 }
+
+const authController = new AuthController();
+
+export default authController;

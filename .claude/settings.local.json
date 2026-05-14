@@ -3,7 +3,16 @@
     "allow": [
       "Bash(Get-ChildItem C:\\\\Users\\\\Usuario\\\\Desktop\\\\Programacion\\\\PROYECTOS FULLSTACK\\\\red-social\\\\claude *)",
       "PowerShell(ls \"C:\\\\Users\\\\Usuario\\\\Desktop\\\\Programacion\\\\PROYECTOS FULLSTACK\\\\red-social\" | Where-Object { $_.Name -notmatch \"node_modules\" })",
-      "PowerShell(ls \"C:\\\\Users\\\\Usuario\\\\Desktop\\\\Programacion\\\\PROYECTOS FULLSTACK\\\\red-social\\\\backend\" | Where-Object { $_.Name -notmatch \"node_modules\" })"
+      "PowerShell(ls \"C:\\\\Users\\\\Usuario\\\\Desktop\\\\Programacion\\\\PROYECTOS FULLSTACK\\\\red-social\\\\backend\" | Where-Object { $_.Name -notmatch \"node_modules\" })",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\nn\\\\Desktop\\\\social-network-mern\\\\frontend\" -Force)",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "Bash(dir C:\\\\Users\\\\nn\\\\Desktop\\\\social-network-mern\\\\frontend *)",
+      "Bash(dir C:\\\\Users\\\\nn\\\\Desktop\\\\social-network-mern\\\\frontend\\\\src *)",
+      "Bash(npm install *)",
+      "Bash(Get-Content *)",
+      "Bash(dir \"C:\\\\Users\\\\nn\\\\Desktop\\\\social-network-mern\\\\frontend\\\\node_modules\\\\tailwindcss\")",
+      "PowerShell(\\(Get-Item \"C:\\\\Users\\\\nn\\\\Desktop\\\\social-network-mern\\\\frontend\\\\node_modules\\\\vite\"\\).LinkType; \\(Get-Item \"C:\\\\Users\\\\nn\\\\Desktop\\\\social-network-mern\\\\frontend\\\\node_modules\\\\vite\"\\).Target)",
+      "PowerShell(node -e \"console.log\\(require.resolve\\('vite/client', { paths: ['C:/Users/nn/Desktop/social-network-mern/frontend'] }\\)\\)\" 2>&1)"
     ]
   }
 }
