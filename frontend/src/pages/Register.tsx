@@ -1,0 +1,250 @@
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useAuth } from '../hooks/authContextHook'
+import type { RegisterUserData } from '../types/auth.types'
+
+const Register = () => {
+  const { registerUser } = useAuth()
+  const { register, handleSubmit, formState: { errors } } = useForm<RegisterUserData>()
+
+  const [serverError, setServerError] = useState<string | null>(null)
+  const [messageRegister, setMessageRegister] = useState<string | null>(null)
+
+  const onSubmit = async (data: RegisterUserData) => {
+    setServerError(null)
+    setMessageRegister(null)
+    try {
+      const res = await registerUser(data)
+      setMessageRegister(res.message)
+    } catch (error: any) {
+      setServerError(error.response?.data?.message)
+    }
+  }
+
+  return (
+    <section className="min-h-screen flex items-center justify-center bg-[#1D6FA4] px-4 py-10">
+
+      {/* Círculos decorativos de fondo */}
+      <div className="pointer-events-none fixed inset-0 overflow-hidden">
+        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full border border-[#F0F8FF]/5" />
+        <div className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full border border-[#F0F8FF]/5" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[#74ACDF]/10 blur-[80px]" />
+      </div>
+
+      <div className="relative w-full max-w-md shadow-[0_16px_64px_rgba(17,24,39,0.6)]">
+
+        <div className="relative overflow-hidden rounded-t-2xl bg-[#74ACDF]/30 border-x border-t border-[#111827]/40 border-b-0 px-8 pt-8 pb-10 backdrop-blur-sm">
+          <div className="pointer-events-none absolute -top-6 -right-6 w-36 h-36 rounded-full border-2 border-[#111827]/20" />
+          <div className="pointer-events-none absolute -top-10 -right-10 w-52 h-52 rounded-full border border-[#111827]/10" />
+          <div className="pointer-events-none absolute bottom-0 -left-8 w-28 h-28 rounded-full border border-[#111827]/15" />
+
+          <div className="relative flex flex-col items-center gap-3">
+            <div className="flex items-center justify-center w-20 h-20 rounded-2xl bg-[#F0F8FF] backdrop-blur-sm border border-[#111827]/60 shadow-[0_4px_20px_rgba(17,24,39,0.5)]">
+              <img src="/images/logo.png" alt="Argentex" className="w-100 object-contain" />
+            </div>
+            <div className="text-center">
+              <h1 className="text-[#F0F8FF] font-bold text-2xl tracking-tight">Crear cuenta</h1>
+              <p className="text-[#F0F8FF]/70 text-sm mt-1">Unite a la red argentina</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-[#111827]/30 backdrop-blur-sm rounded-b-2xl border-x border-b border-[#111827]/40 border-t-0 px-8 pt-6 pb-8">
+
+          {messageRegister && (
+            <div className="flex items-center gap-3 mb-5 px-4 py-3 rounded-xl bg-[#F0F8FF]/15 border border-[#F0F8FF]/25">
+              <i className="bi bi-check-circle-fill text-[#F0F8FF] text-lg shrink-0"></i>
+              <p className="text-[#F0F8FF] text-sm">{messageRegister}</p>
+            </div>
+          )}
+
+          {serverError && (
+            <div className="flex items-center gap-3 mb-5 px-4 py-3 rounded-xl bg-red-500/20 border border-red-400/30">
+              <i className="bi bi-exclamation-triangle-fill text-red-300 text-lg shrink-0"></i>
+              <p className="text-red-200 text-sm">{serverError}</p>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-4">
+
+            <div className="grid grid-cols-2 gap-3">
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[#F0F8FF]/70 text-xs font-medium uppercase tracking-wide">
+                  Nombre
+                </label>
+                <div className="relative group">
+                  <span className="absolute inset-y-0 left-3 flex items-center text-[#F0F8FF]/40 pointer-events-none transition group-focus-within:text-[#F0F8FF]/80">
+                    <i className="bi bi-person-fill text-sm"></i>
+                  </span>
+                  <input
+                    type="text"
+                    placeholder="Nombre"
+                    className={`w-full pl-8 pr-3 py-2.5 rounded-xl border bg-[#111827]/50 text-[#F0F8FF] placeholder-[#F0F8FF]/25 outline-none transition duration-200
+                      focus:bg-[#111827]/60 focus:border-[#74ACDF]/60 focus:shadow-[0_0_16px_rgba(17,24,39,0.4)]
+                      ${errors.name ? 'border-red-400/60 bg-red-900/30' : 'border-[#111827]/60 hover:border-[#74ACDF]/30'}`}
+                    {...register('name', { required: 'Obligatorio' })}
+                  />
+                </div>
+                {errors.name && (
+                  <span className="text-red-300 text-xs flex items-center gap-1">
+                    <i className="bi bi-exclamation-circle text-xs"></i>
+                    {errors.name.message}
+                  </span>
+                )}
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[#F0F8FF]/70 text-xs font-medium uppercase tracking-wide">
+                  Apellido
+                </label>
+                <div className="relative group">
+                  <span className="absolute inset-y-0 left-3 flex items-center text-[#F0F8FF]/40 pointer-events-none transition group-focus-within:text-[#F0F8FF]/80">
+                    <i className="bi bi-person-fill text-sm"></i>
+                  </span>
+                  <input
+                    type="text"
+                    placeholder="Apellido"
+                    className={`w-full pl-8 pr-3 py-2.5 rounded-xl border bg-[#111827]/50 text-[#F0F8FF] placeholder-[#F0F8FF]/25 outline-none transition duration-200
+                      focus:bg-[#111827]/60 focus:border-[#74ACDF]/60 focus:shadow-[0_0_16px_rgba(17,24,39,0.4)]
+                      ${errors.surname ? 'border-red-400/60 bg-red-900/30' : 'border-[#111827]/60 hover:border-[#74ACDF]/30'}`}
+                    {...register('surname', { required: 'Obligatorio' })}
+                  />
+                </div>
+                {errors.surname && (
+                  <span className="text-red-300 text-xs flex items-center gap-1">
+                    <i className="bi bi-exclamation-circle text-xs"></i>
+                    {errors.surname.message}
+                  </span>
+                )}
+              </div>
+
+            </div>
+
+            <div className="border-t border-[#111827]/40 my-0.5" />
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[#F0F8FF]/70 text-xs font-medium uppercase tracking-wide">
+                Nombre de usuario
+              </label>
+              <div className="relative group">
+                <span className="absolute inset-y-0 left-3 flex items-center text-[#F0F8FF]/40 pointer-events-none transition group-focus-within:text-[#F0F8FF]/80">
+                  <i className="bi bi-at text-base"></i>
+                </span>
+                <input
+                  type="text"
+                  placeholder="@tu_usuario"
+                  className={`w-full pl-9 pr-3 py-3 rounded-xl border bg-[#111827]/50 text-[#F0F8FF] placeholder-[#F0F8FF]/25 outline-none transition duration-200
+                    focus:bg-[#111827]/60 focus:border-[#74ACDF]/60 focus:shadow-[0_0_16px_rgba(17,24,39,0.4)]
+                    ${errors.username ? 'border-red-400/60 bg-red-900/30' : 'border-[#111827]/60 hover:border-[#74ACDF]/30'}`}
+                  {...register('username', { required: 'El nombre de usuario es obligatorio' })}
+                />
+              </div>
+              {errors.username && (
+                <span className="text-red-300 text-xs flex items-center gap-1">
+                  <i className="bi bi-exclamation-circle text-xs"></i>
+                  {errors.username.message}
+                </span>
+              )}
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[#F0F8FF]/70 text-xs font-medium uppercase tracking-wide">
+                Email
+              </label>
+              <div className="relative group">
+                <span className="absolute inset-y-0 left-3 flex items-center text-[#F0F8FF]/40 pointer-events-none transition group-focus-within:text-[#F0F8FF]/80">
+                  <i className="bi bi-envelope-fill text-sm"></i>
+                </span>
+                <input
+                  type="email"
+                  placeholder="correo@ejemplo.com"
+                  className={`w-full pl-9 pr-3 py-3 rounded-xl border bg-[#111827]/50 text-[#F0F8FF] placeholder-[#F0F8FF]/25 outline-none transition duration-200
+                    focus:bg-[#111827]/60 focus:border-[#74ACDF]/60 focus:shadow-[0_0_16px_rgba(17,24,39,0.4)]
+                    ${errors.email ? 'border-red-400/60 bg-red-900/30' : 'border-[#111827]/60 hover:border-[#74ACDF]/30'}`}
+                  {...register('email', {
+                    required: 'El email es obligatorio',
+                    pattern: {
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: 'Ingresá un email válido',
+                    },
+                  })}
+                />
+              </div>
+              {errors.email && (
+                <span className="text-red-300 text-xs flex items-center gap-1">
+                  <i className="bi bi-exclamation-circle text-xs"></i>
+                  {errors.email.message}
+                </span>
+              )}
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[#F0F8FF]/70 text-xs font-medium uppercase tracking-wide">
+                Contraseña
+              </label>
+              <div className="relative group">
+                <span className="absolute inset-y-0 left-3 flex items-center text-[#F0F8FF]/40 pointer-events-none transition group-focus-within:text-[#F0F8FF]/80">
+                  <i className="bi bi-shield-lock-fill text-sm"></i>
+                </span>
+                <input
+                  type="password"
+                  placeholder="Mínimo 6 caracteres"
+                  className={`w-full pl-9 pr-3 py-3 rounded-xl border bg-[#111827]/50 text-[#F0F8FF] placeholder-[#F0F8FF]/25 outline-none transition duration-200
+                    focus:bg-[#111827]/60 focus:border-[#74ACDF]/60 focus:shadow-[0_0_16px_rgba(17,24,39,0.4)]
+                    ${errors.password ? 'border-red-400/60 bg-red-900/30' : 'border-[#111827]/60 hover:border-[#74ACDF]/30'}`}
+                  {...register('password', {
+                    required: 'La contraseña es obligatoria',
+                    minLength: {
+                      value: 6,
+                      message: 'La contraseña debe tener al menos 6 caracteres',
+                    },
+                  })}
+                />
+              </div>
+              {errors.password && (
+                <span className="text-red-300 text-xs flex items-center gap-1">
+                  <i className="bi bi-exclamation-circle text-xs"></i>
+                  {errors.password.message}
+                </span>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="w-full mt-3 py-3 rounded-xl font-semibold transition-all duration-300
+                bg-[#F0F8FF] text-[#1D6FA4]
+                hover:bg-[#F0F8FF]/90 hover:shadow-[0_0_24px_rgba(240,248,255,0.2)]
+                active:scale-[0.98] cursor-pointer group"
+            >
+              <span className="flex items-center justify-center gap-2">
+                <i className="bi bi-person-check-fill text-base transition group-hover:scale-110"></i>
+                Crear mi cuenta
+              </span>
+            </button>
+
+          </form>
+
+          <div className="flex items-center gap-3 my-5">
+            <div className="flex-1 h-px bg-[#111827]/40" />
+            <span className="text-[#F0F8FF]/30 text-xs">o</span>
+            <div className="flex-1 h-px bg-[#111827]/40" />
+          </div>
+
+          <p className="text-center text-[#F0F8FF]/50 text-sm">
+            ¿Ya tenés cuenta?{' '}
+            <a
+              href="/login"
+              className="text-[#F0F8FF]/80 cursor-pointer font-medium transition hover:text-[#F0F8FF] hover:underline underline-offset-2"
+            >
+              Iniciá sesión
+            </a>
+          </p>
+
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default Register

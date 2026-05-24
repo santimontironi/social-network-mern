@@ -19,19 +19,44 @@ Tailwind V4 y Bootstrap Icons ya están instalados. No los instales ni los confi
 4. **Usá Tailwind V4** para todos los estilos. Evitá escribir CSS custom salvo que sea absolutamente necesario.
 5. **Leé siempre los archivos antes de editarlos o crearlos.**
 6. **No toques** `tsconfig.json`, `tsconfig.app.json`, `tsconfig.node.json`, `vite.config.ts`, `package.json`, `package-lock.json`.
+7. **OBLIGATORIO — PALETA EXCLUSIVA**: Está **terminantemente prohibido** usar colores genéricos de Tailwind como `indigo`, `blue`, `gray`, `white`, `black`, `slate`, `zinc`, `neutral`, `stone`, `red` (salvo errores), `green`, `yellow`, `purple`, `pink`, `cyan`, `teal`, `emerald`, `violet`, `fuchsia`, `rose`, `sky`, `lime`, `orange`, `amber`. Cada color debe venir de la paleta Argentex usando clases arbitrarias: `bg-[#1D6FA4]`, `text-[#74ACDF]`, `border-[#F0F8FF]/20`, etc. **Sin excepciones.**
 
 ---
 
 ## PALETA DE COLORES — ARGENTEX
 
 ```
-Primario:   #1D6FA4  (azul Argentina oscuro)
-Secundario: #74ACDF  (celeste argentino)
-Terciario:  #F0F8FF  (blanco celeste suave)
-Dark:       #111827  (casi negro — fondos, navbar, sidebar)
+Primario:   #1D6FA4  (azul Argentina oscuro  — FONDO DOMINANTE)
+Secundario: #74ACDF  (celeste argentino       — superficies, cards, acentos)
+Terciario:  #F0F8FF  (blanco celeste suave    — texto principal, elementos destacados)
+Dark:       #111827  (casi negro              — detalles mínimos: bordes, sombras, íconos sobre fondo claro)
 ```
 
+### Jerarquía de uso — OBLIGATORIO
+
+| Rol | Color | Ejemplos |
+|---|---|---|
+| **Fondo de página / base dominante** | `#1D6FA4` | `<section>`, `<main>`, página entera |
+| **Superficies / cards / inputs** | `#74ACDF` o `#74ACDF` con opacidad | cards, formularios, paneles |
+| **Texto principal y elementos destacados** | `#F0F8FF` | títulos, labels, íconos sobre fondo azul |
+| **Detalles mínimos** | `#111827` | bordes sutiles, sombras, texto secundario sobre fondo claro |
+
+**El color primario `#1D6FA4` es el dueño del espacio.** La pantalla debe verse azul argentina. Los elementos que necesitan destacar usan `#F0F8FF`. El dark `#111827` aparece solo donde sea estrictamente necesario como detalle (borde, divider, texto oscuro sobre superficie clara).
+
 Usá estos valores con clases arbitrarias de Tailwind: `bg-[#1D6FA4]`, `text-[#74ACDF]`, `border-[#F0F8FF]/20`, etc.
+
+---
+
+## IDENTIDAD VISUAL — TEMÁTICA ARGENTINA
+
+**Argentex es una red social argentina. El diseño debe respirar identidad argentina en cada detalle, sin caer en el kitsch. Argentina moderna, orgullosa y digital.**
+
+Principios de identidad:
+- **Los colores celeste y azul son sagrados**: `#1D6FA4` y `#74ACDF` son los colores de la camiseta argentina. El fondo azul intenso es la albiceleste — el diseño completo vive en ese azul.
+- **El blanco `#F0F8FF` es el contraste que da vida**: sobre el fondo azul, los elementos blancos/celeste claros saltan a la vista con elegancia. Úsalo en títulos, botones principales, íconos destacados, cards importantes.
+- **El gradiente celeste-azul es la firma visual**: de `#1D6FA4` a `#74ACDF` — usarlo en banners, headers y acentos. También funciona al revés.
+- **Orgullo sin estridencia**: el diseño debe sentirse argentino de forma sofisticada — no con banderas ni mapas, sino con la paleta, la actitud y la energía del diseño.
+- **Calidez latina en el tono visual**: el diseño no es frío ni minimalista nórdico — tiene peso, presencia y carácter.
 
 ---
 
@@ -40,16 +65,15 @@ Usá estos valores con clases arbitrarias de Tailwind: `bg-[#1D6FA4]`, `text-[#7
 **El diseño debe ser original, moderno y profesional. No hagas estilos genéricos ni componentes que parezcan un template descargado de internet. Cada decisión visual debe tener intención.**
 
 Principios a seguir:
-- **Jerarquía visual clara**: usá tamaños, pesos y opacidades para guiar la mirada, no todo puede tener el mismo peso
-- **Glassmorphism sutil**: cards con `backdrop-blur`, fondo semitransparente `bg-[#1a2536]/80`, borde `border border-[#74ACDF]/10` — moderno sin ser recargado
-- **Gradientes con propósito**: usá gradientes de `#1D6FA4` a `#74ACDF` en banners, botones CTA y acentos — no en todos lados
-- **Sombras con color**: `shadow` no gris sino con tinte del primario: `shadow-[0_4px_24px_rgba(29,111,164,0.15)]`
-- **Estados hover elaborados**: no solo cambio de opacidad — usá transiciones de color, escala sutil (`hover:scale-[1.02]`), o glow con `hover:shadow-[0_0_12px_rgba(116,172,223,0.3)]`
+- **Jerarquía visual clara**: el fondo azul `#1D6FA4` es la base; los elementos blancos y celestes claros emergen sobre él — no todo puede tener el mismo peso
+- **Glassmorphism sobre azul**: cards con `backdrop-blur`, fondo `bg-[#74ACDF]/20` o `bg-[#F0F8FF]/10`, borde `border border-[#F0F8FF]/20` — moderno sobre el fondo primario
+- **Gradientes con propósito**: de `#1D6FA4` a `#74ACDF` o de `#1D6FA4` a un tono más oscuro para dar profundidad al fondo
+- **Sombras con color**: `shadow-[0_4px_24px_rgba(17,24,39,0.3)]` (dark) para que los elementos floten sobre el fondo azul
+- **Estados hover elaborados**: no solo cambio de opacidad — transiciones de color, escala sutil (`hover:scale-[1.02]`), glow con `hover:shadow-[0_0_16px_rgba(240,248,255,0.2)]`
 - **Espaciado generoso y consistente**: padding interno amplio, gaps bien definidos — nada apretado
 - **Bordes redondeados modernos**: `rounded-2xl` para cards grandes, `rounded-xl` para elementos medianos, `rounded-full` para pills y avatares
-- **Acentos celestes precisos**: el celeste `#74ACDF` solo en elementos que merecen atención — no en todo
-- **Fondos con profundidad**: usá capas: fondo base `#111827`, superficies `#0f1923`, cards `#1a2536` — que se note la profundidad del layout
-- **Modo dark**: es el único modo. Todo diseñado para dark desde el inicio, no como afterthought
+- **Inputs y superficies interactivas**: fondo `bg-[#74ACDF]/20` o `bg-[#F0F8FF]/10` con borde `border-[#F0F8FF]/20`, texto `#F0F8FF` — se ven sobre el fondo azul
+- **El dark `#111827` es un detalle**: úsalo solo para bordes de énfasis, sombras, o texto muy oscuro sobre superficie clara (`#F0F8FF`). Nunca como fondo de página.
 
 ---
 
@@ -86,10 +110,10 @@ src/
 ## DESCRIPCIÓN DETALLADA POR COMPONENTE
 
 ### `Navbar.tsx`
-Fijo arriba, fondo `#111827`. Logo "Argentex" en `#74ACDF` a la izquierda. Centro: íconos `bi-search`, `bi-house-fill`, `bi-compass`, `bi-bell`. Derecha: avatar circular y botón "Nueva publicación" con fondo `#1D6FA4`. Íconos y texto en `#F0F8FF`.
+Fijo arriba, fondo `#1D6FA4` (primario). Logo "Argentex" en `#F0F8FF` a la izquierda. Centro: íconos `bi-search`, `bi-house-fill`, `bi-compass`, `bi-bell` en `#F0F8FF`. Derecha: avatar circular y botón "Nueva publicación" con fondo `#F0F8FF]/20` y borde `#F0F8FF]/40`. Borde inferior `#111827]/20` sutil.
 
 ### `Sidebar.tsx`
-Fijo izquierda, w-64, fondo `#111827`. Items de navegación con íconos Bootstrap Icons:
+Fijo izquierda, w-64, fondo `#1D6FA4` (primario, mismo que la página). Items de navegación con íconos Bootstrap Icons en `#F0F8FF]/70`:
 - Inicio `bi-house-fill`
 - Explorar `bi-compass`
 - Notificaciones `bi-bell-fill`
@@ -98,47 +122,47 @@ Fijo izquierda, w-64, fondo `#111827`. Items de navegación con íconos Bootstra
 - Guardados `bi-bookmark-fill`
 - Configuración `bi-gear-fill`
 
-Item activo con fondo `#1D6FA4`. Abajo del todo: mini perfil con `Avatar` y nombre "Santiago M.".
+Item activo con fondo `#F0F8FF]/15` y texto/ícono `#F0F8FF`. Abajo del todo: mini perfil con `Avatar` y nombre "Santiago M." en `#F0F8FF`.
 
 ### `RightPanel.tsx`
-W-80. Sección "Sugerencias para seguir" con 3 usuarios placeholder (Avatar + nombre + botón "Seguir" con borde `#74ACDF`). Sección "Tendencias" con 5 hashtags placeholder.
+W-80. Cards con fondo `#74ACDF]/20` y borde `#F0F8FF]/10`. Sección "Sugerencias para seguir" con 3 usuarios placeholder (Avatar + nombre en `#F0F8FF` + botón "Seguir" con borde `#F0F8FF]/40`). Sección "Tendencias" con 5 hashtags en `#F0F8FF`.
 
 ### `PostCard.tsx`
-Fondo `#1a2536`, `rounded-2xl`, `border border-[#74ACDF]/20`. Arriba: `Avatar` + nombre + @handle + timestamp. Cuerpo: texto. Abajo: acciones con íconos `bi-heart`, `bi-chat`, `bi-share`, `bi-bookmark` y contadores numéricos.
+Fondo `#74ACDF]/20`, borde `#F0F8FF]/10`, `rounded-2xl`. Arriba: `Avatar` + nombre en `#F0F8FF` + @handle en `#F0F8FF]/60` + timestamp. Cuerpo: texto en `#F0F8FF]/90`. Abajo: acciones con íconos `bi-heart`, `bi-chat`, `bi-share`, `bi-bookmark` en `#F0F8FF]/60` y contadores numéricos.
 
 ### `PostComposer.tsx`
-Fondo `#1a2536`. `textarea` con placeholder "¿Qué estás pensando?". Botones de adjuntar: `bi-image`, `bi-file-gif`, `bi-geo-alt`. Botón "Publicar" con fondo `#1D6FA4`.
+Fondo `#74ACDF]/20`, borde `#F0F8FF]/10`. `textarea` con fondo `#F0F8FF]/10`, placeholder "¿Qué estás pensando?" en `#F0F8FF]/40`, texto `#F0F8FF`. Botones de adjuntar: `bi-image`, `bi-file-gif`, `bi-geo-alt` en `#F0F8FF]/70`. Botón "Publicar" con fondo `#F0F8FF]/20` y texto `#F0F8FF`.
 
 ### `Feed.tsx`
 `PostComposer` seguido de 5 `PostCard` con datos placeholder distintos.
 
 ### `ProfileHeader.tsx`
-Banner con gradiente de `#1D6FA4` a `#74ACDF`. `Avatar` lg superpuesto. Nombre, @usuario, bio, `bi-geo-alt` ubicación, `bi-link-45deg` sitio web. Botón "Editar perfil" en outline `#1D6FA4`.
+Fondo `#74ACDF]/30` con borde `#F0F8FF]/10`. `Avatar` lg superpuesto. Nombre en `#F0F8FF`, @usuario en `#F0F8FF]/70`, bio, `bi-geo-alt` ubicación, `bi-link-45deg` sitio web. Botón "Editar perfil" con borde `#F0F8FF]/40` y texto `#F0F8FF`.
 
 ### `ProfileStats.tsx`
-3 columnas: Publicaciones / Seguidores / Seguidos. Número grande en `#74ACDF`, label en `#F0F8FF`.
+3 columnas: Publicaciones / Seguidores / Seguidos. Número grande en `#F0F8FF`, label en `#F0F8FF]/60`.
 
 ### `Avatar.tsx`
-Props: `size?: 'sm' | 'md' | 'lg'`, `src?: string`. Sin src: `bi-person-fill` sobre fondo `#1D6FA4`.
+Props: `size?: 'sm' | 'md' | 'lg'`, `src?: string`. Sin src: `bi-person-fill` en `#F0F8FF` sobre fondo `#F0F8FF]/20`.
 
 ### `Button.tsx`
 Props: `variant?: 'primary' | 'secondary' | 'outline' | 'ghost'`, `size?: 'sm' | 'md' | 'lg'`, `children`.
-- primary: fondo `#1D6FA4`, texto blanco
-- secondary: fondo `#74ACDF`, texto `#111827`
-- outline: borde `#1D6FA4`, texto `#1D6FA4`, sin fondo
-- ghost: sin fondo ni borde, texto `#F0F8FF`
+- primary: fondo `#F0F8FF`, texto `#1D6FA4`
+- secondary: fondo `#74ACDF]/30`, texto `#F0F8FF`
+- outline: borde `#F0F8FF]/40`, texto `#F0F8FF`, sin fondo
+- ghost: sin fondo ni borde, texto `#F0F8FF]/70`
 
 ### `Badge.tsx`
-Props: `variant?: 'primary' | 'secondary'`, `children`. Pill redondeado, padding pequeño.
+Props: `variant?: 'primary' | 'secondary'`, `children`. Pill redondeado, fondo `#F0F8FF]/15`, texto `#F0F8FF`, padding pequeño.
 
 ### `HomePage.tsx`
-Layout 3 columnas sobre `#111827`. `Navbar` fija arriba. Izquierda: `Sidebar`. Centro: `Feed` con scroll. Derecha: `RightPanel`.
+Layout 3 columnas sobre `#1D6FA4`. `Navbar` fija arriba. Izquierda: `Sidebar`. Centro: `Feed` con scroll. Derecha: `RightPanel`.
 
 ### `ProfilePage.tsx`
-`ProfileHeader` + `ProfileStats` + 3 tabs visuales ("Publicaciones" / "Respuestas" / "Me gusta", solo visual) + `Feed`.
+`ProfileHeader` + `ProfileStats` + 3 tabs visuales ("Publicaciones" / "Respuestas" / "Me gusta", tab activo con fondo `#F0F8FF]/15`, solo visual) + `Feed`.
 
 ### `LoginPage.tsx`
-Centrada, fondo `#111827`. Logo "Argentex" grande en `#74ACDF`. Inputs de email y contraseña: fondo `#1a2536`, borde `#74ACDF`, texto `#F0F8FF`. Botón "Iniciar sesión" fondo `#1D6FA4`. Link "¿No tenés cuenta? Registrate" en `#74ACDF`. Sin lógica de submit.
+Centrada, fondo `#1D6FA4`. Logo "Argentex" grande en `#F0F8FF`. Card con fondo `#74ACDF]/20` y borde `#F0F8FF]/15`. Inputs: fondo `#F0F8FF]/10`, borde `#F0F8FF]/20`, texto `#F0F8FF`. Botón "Iniciar sesión" con fondo `#F0F8FF`, texto `#1D6FA4`. Link "¿No tenés cuenta? Registrate" en `#F0F8FF]/80`. Sin lógica de submit.
 
 ### `App.tsx`
 Reemplazar contenido actual. Renderizar solo `<HomePage />`.

@@ -1,5 +1,5 @@
 import AuthRepository from '../repository/auth.repository.js';
-import Bycrypt from 'bcryptjs';
+import bycrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import transport from '../config/email.config.js';
 
@@ -19,7 +19,7 @@ class AuthController {
                 return res.status(400).json({ message: 'El nombre de usuario ya esta en uso' });
             }
 
-            const hashedPassword = await Bycrypt.hash(password, 10);
+            const hashedPassword = await bycrypt.hash(password, 10);
 
             const userConfirmed = await AuthRepository.findUserVerified(email);
 
@@ -40,10 +40,10 @@ class AuthController {
                 text: `Hola ${name}, gracias por registrarte en nuestra plataforma. Haz clic en el siguiente enlace para verificar tu email: ${URL}`,
             });
 
-            res.status(201).json({ message: 'User registered successfully' });
+            res.status(201).json({ message: 'Usuario registrado exitosamente. Verifica tu email para iniciar sesión' });
         }
         catch (error) {
-            res.status(500).json({ message: 'Error registering user', error });
+            res.status(500).json({ message: error });
         }
     }
 
@@ -95,7 +95,7 @@ class AuthController {
                 return res.status(401).json({ message: 'Credenciales invalidas' });
             }
 
-            const isMatch = await Bycrypt.compare(password, user.password);
+            const isMatch = await bycrypt.compare(password, user.password);
 
             if (!isMatch) {
                 return res.status(401).json({ message: 'Credenciales invalidas' });

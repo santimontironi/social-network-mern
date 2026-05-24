@@ -6,6 +6,10 @@ export interface RegisterUserData{
     surname: string;
 }
 
+export interface RegisterUserResponse{
+    message: string;
+}
+
 export interface LoginUserData{
     identifier: string;
     password: string;
