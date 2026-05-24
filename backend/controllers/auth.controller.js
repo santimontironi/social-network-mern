@@ -34,7 +34,7 @@ class AuthController {
             const URL = `${process.env.FRONTEND_URL}/verify-email/${token}`;
 
             await transport.sendMail({
-                from: process.env.EMAIL_FROM,
+                from: process.env.EMAIL_USERNAME,
                 to: email,
                 subject: 'Bienvenido a nuestra plataforma',
                 text: `Hola ${name}, gracias por registrarte en nuestra plataforma. Haz clic en el siguiente enlace para verificar tu email: ${URL}`,

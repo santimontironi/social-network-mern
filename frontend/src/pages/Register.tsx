@@ -4,7 +4,7 @@ import { useAuth } from '../hooks/authContextHook'
 import type { RegisterUserData } from '../types/auth.types'
 
 const Register = () => {
-  const { registerUser } = useAuth()
+  const { registerUser, loading } = useAuth()
   const { register, handleSubmit, formState: { errors } } = useForm<RegisterUserData>()
 
   const [serverError, setServerError] = useState<string | null>(null)
@@ -17,18 +17,17 @@ const Register = () => {
       const res = await registerUser(data)
       setMessageRegister(res.message)
     } catch (error: any) {
-      setServerError(error.response?.data?.message)
+      setServerError(error.response?.data?.message || 'Error al registrar el usuario')
     }
   }
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-[#1D6FA4] px-4 py-10">
 
-      {/* Círculos decorativos de fondo */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full border border-[#F0F8FF]/5" />
-        <div className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full border border-[#F0F8FF]/5" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[#74ACDF]/10 blur-[80px]" />
+        <div className="absolute -top-32 -left-32 w-125 h-125 rounded-full border border-[#F0F8FF]/5" />
+        <div className="absolute -bottom-40 -right-40 w-150 h-150 rounded-full border border-[#F0F8FF]/5" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 rounded-full bg-[#74ACDF]/10 blur-[80px]" />
       </div>
 
       <div className="relative w-full max-w-md shadow-[0_16px_64px_rgba(17,24,39,0.6)]">
@@ -212,15 +211,24 @@ const Register = () => {
 
             <button
               type="submit"
+              disabled={loading.register}
               className="w-full mt-3 py-3 rounded-xl font-semibold transition-all duration-300
                 bg-[#F0F8FF] text-[#1D6FA4]
                 hover:bg-[#F0F8FF]/90 hover:shadow-[0_0_24px_rgba(240,248,255,0.2)]
-                active:scale-[0.98] cursor-pointer group"
+                active:scale-[0.98] cursor-pointer group
+                disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              <span className="flex items-center justify-center gap-2">
-                <i className="bi bi-person-check-fill text-base transition group-hover:scale-110"></i>
-                Crear mi cuenta
-              </span>
+              {loading.register ? (
+                <span className="flex items-center justify-center gap-2">
+                  <i className="bi bi-arrow-repeat text-base animate-spin"></i>
+                  Registrando...
+                </span>
+              ) : (
+                <span className="flex items-center justify-center gap-2">
+                  <i className="bi bi-person-check-fill text-base transition group-hover:scale-110"></i>
+                  Crear mi cuenta
+                </span>
+              )}
             </button>
 
           </form>
