@@ -12,7 +12,11 @@
       "Bash(Get-Content *)",
       "Bash(dir \"C:\\\\Users\\\\nn\\\\Desktop\\\\social-network-mern\\\\frontend\\\\node_modules\\\\tailwindcss\")",
       "PowerShell(\\(Get-Item \"C:\\\\Users\\\\nn\\\\Desktop\\\\social-network-mern\\\\frontend\\\\node_modules\\\\vite\"\\).LinkType; \\(Get-Item \"C:\\\\Users\\\\nn\\\\Desktop\\\\social-network-mern\\\\frontend\\\\node_modules\\\\vite\"\\).Target)",
-      "PowerShell(node -e \"console.log\\(require.resolve\\('vite/client', { paths: ['C:/Users/nn/Desktop/social-network-mern/frontend'] }\\)\\)\" 2>&1)"
+      "PowerShell(node -e \"console.log\\(require.resolve\\('vite/client', { paths: ['C:/Users/nn/Desktop/social-network-mern/frontend'] }\\)\\)\" 2>&1)",
+      "Bash(Get-ChildItem -Path . -Directory)",
+      "Bash(Select-Object Name)",
+      "PowerShell(Get-Item *)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Usuario\\\\Desktop\\\\Programacion\\\\PROYECTOS FULLSTACK\\\\red-social\\\\frontend\\\\src\" -Recurse -Exclude node_modules -Directory | ForEach-Object { $_.Name })"
     ]
   }
 }
