@@ -16,7 +16,9 @@
       "Bash(Get-ChildItem -Path . -Directory)",
       "Bash(Select-Object Name)",
       "PowerShell(Get-Item *)",
-      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Usuario\\\\Desktop\\\\Programacion\\\\PROYECTOS FULLSTACK\\\\red-social\\\\frontend\\\\src\" -Recurse -Exclude node_modules -Directory | ForEach-Object { $_.Name })"
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Usuario\\\\Desktop\\\\Programacion\\\\PROYECTOS FULLSTACK\\\\red-social\\\\frontend\\\\src\" -Recurse -Exclude node_modules -Directory | ForEach-Object { $_.Name })",
+      "Bash(python3 -c ' *)",
+      "Bash(identify \"C:/Users/Usuario/Desktop/Programacion/PROYECTOS FULLSTACK/red-social/frontend/public/images/guardapampa.jpg\")"
     ]
   }
 }

@@ -28,7 +28,59 @@ const Login = () => {
   }, [user, navigate])
 
   return (
-    <section className="min-h-screen overflow-y-auto flex items-center justify-center bg-[#1D6FA4] px-4 py-6">
+    <section className="min-h-screen overflow-y-auto flex items-start md:items-center justify-center bg-[#1D6FA4] px-4 pt-25 pb-8 md:pt-6 md:pb-6">
+
+      <div className="pointer-events-none fixed inset-0 overflow-hidden opacity-[0.14]">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="diamonds" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <polygon points="16,2 30,16 16,30 2,16" fill="none" stroke="#F0F8FF" strokeWidth="1"/>
+              <polygon points="16,10 22,16 16,22 10,16" fill="#F0F8FF" fillOpacity="0.3"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#diamonds)"/>
+        </svg>
+      </div>
+
+      <div
+        className="pointer-events-none fixed top-0 left-0 right-0 opacity-90 h-20 md:h-30"
+        style={{
+          backgroundImage: "url('/images/guardapampa.png')",
+          backgroundSize: 'auto 100%',
+        }}
+      />
+
+      <div className="pointer-events-none fixed inset-0 overflow-hidden">
+
+        <img
+          src="/images/mate.png" alt=""
+          className="absolute invert mix-blend-screen
+                     bottom-[18%] left-[1%] w-14 opacity-[0.18] rotate-[-14deg]
+                     md:top-[25%] md:bottom-auto md:left-[3%] md:w-30 md:opacity-40"
+        />
+
+        <img
+          src="/images/sombrero.png" alt=""
+          className="absolute invert mix-blend-screen
+                     bottom-[16%] right-[1%] w-16 opacity-[0.18] rotate-[8deg]
+                     md:top-[24%] md:bottom-auto md:right-[4%] md:w-41.25 md:opacity-[0.38]"
+        />
+
+        <img
+          src="/images/caballo.png" alt=""
+          className="absolute invert mix-blend-screen
+                     bottom-[3%] right-[1%] w-16 opacity-[0.15] rotate-2
+                     md:bottom-[10%] md:right-[0%] md:w-42.5 md:opacity-[0.42]"
+        />
+
+        <img
+          src="/images/guitarra.png" alt=""
+          className="absolute invert mix-blend-screen
+                     bottom-[2%] left-[1%] w-14 opacity-[0.15] rotate-[-10deg]
+                     md:bottom-[8%] md:left-[4%] md:w-38.5 md:opacity-40"
+        />
+
+      </div>
 
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <div className="absolute -top-32 -left-32 w-125 h-125 rounded-full border border-[#F0F8FF]/5" />
@@ -36,9 +88,9 @@ const Login = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 rounded-full bg-[#74ACDF]/10 blur-[80px]" />
       </div>
 
-      <div className="relative w-full max-w-lg shadow-[0_16px_64px_rgba(17,24,39,0.6)] mb-8 sm:mb-16 rounded-2xl overflow-hidden">
+      <div className="relative w-full max-w-lg shadow-[0_16px_64px_rgba(17,24,39,0.6)] mb-4 md:mb-16 rounded-2xl overflow-hidden">
 
-        <div className="relative overflow-hidden rounded-t-2xl bg-[#74ACDF]/30 border-x border-t border-[#111827]/40 border-b-0 px-8 pt-5 pb-6 backdrop-blur-sm">
+        <div className="relative overflow-hidden rounded-t-2xl bg-[#74ACDF]/30 border-x border-t border-[#111827]/40 border-b-0 px-4 md:px-8 pt-5 pb-6 backdrop-blur-sm">
           <div className="pointer-events-none absolute -top-6 -right-6 w-36 h-36 rounded-full border-2 border-[#111827]/20" />
           <div className="pointer-events-none absolute -top-10 -right-10 w-52 h-52 rounded-full border border-[#111827]/10" />
           <div className="pointer-events-none absolute bottom-0 -left-8 w-28 h-28 rounded-full border border-[#111827]/15" />
@@ -54,7 +106,7 @@ const Login = () => {
           </div>
         </div>
 
-        <div className="bg-[#111827]/30 backdrop-blur-sm rounded-b-2xl border-x border-b border-[#111827]/40 border-t-0 px-8 pt-4 pb-5">
+        <div className="bg-[#111827]/30 backdrop-blur-sm rounded-b-2xl border-x border-b border-[#111827]/40 border-t-0 px-4 md:px-8 pt-4 pb-5">
 
           {serverError && (
             <div className="flex items-center gap-3 mb-5 px-4 py-3 rounded-xl bg-red-500/20 border border-red-400/30">
