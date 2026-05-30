@@ -4,6 +4,9 @@ export interface RegisterUserData{
     password: string;
     name: string;
     surname: string;
+    birthDay: number;
+    birthMonth: number;
+    birthYear: number;
 }
 
 export interface RegisterUserResponse{
@@ -16,9 +19,12 @@ export interface LoginUserData{
 }
 
 export interface LoginUserResponse{
-    id: string;
-    username: string;
-    email: string;
+    message: string;
+    user: {
+        id: string;
+        username: string;
+        email: string;
+    };
 }
 
 export interface User {
@@ -31,4 +37,11 @@ export interface User {
 
 export interface LoadingAuth {
     register: boolean;
+    verify: boolean;
+    login: boolean;
+    home: boolean;
+}
+
+export interface dashboardResponse {
+    user: User;
 }

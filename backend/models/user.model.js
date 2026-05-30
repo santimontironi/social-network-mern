@@ -32,6 +32,18 @@ const userSchema = new mongoose.Schema({
     emailVerified: {
         type: Boolean,
         default: false
+    },
+    birthDay: {
+        type: Number,
+        required: true
+    },
+    birthMonth: {
+        type: Number,
+        required: true
+    },
+    birthYear: {
+        type: Number,
+        required: true
     }
 }, {
     timestamps: true

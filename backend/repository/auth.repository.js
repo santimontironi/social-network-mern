@@ -1,8 +1,8 @@
 import User from '../models/user.model.js';
 
 class AuthRepository {
-    async register(username, email, password, name, surname) {
-        const user = new User({ username, email, password, name, surname });
+    async register(username, email, password, name, surname, birthDay, birthMonth, birthYear) {
+        const user = new User({ username, email, password, name, surname, birthDay, birthMonth, birthYear });
         await user.save();
         return user;
     }
@@ -32,6 +32,10 @@ class AuthRepository {
     async findUserVerified(email) {
         return await User.findOne({ email, emailVerified: true });
     }
+
+    async verifyEmail(email){
+        return await User.findOneAndUpdate({ email }, { emailVerified: true }, { new: true });
+    } 
 }
 
 const authRepository = new AuthRepository();

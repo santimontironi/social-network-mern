@@ -6,7 +6,11 @@ import transport from '../config/email.config.js';
 class AuthController {
     async register(req, res) {
         try{
-            const { username, email, password, name, surname } = req.body;
+            const { username, email, password, name, surname, birthDay, birthMonth, birthYear } = req.body;
+
+            if(!username || !email || !password || !name || !surname || !birthDay || !birthMonth || !birthYear) {
+                return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+            }
 
             const emailExists = await AuthRepository.findByEmail(email);
             const usernameExists = await AuthRepository.findByUsername(username);
@@ -27,11 +31,11 @@ class AuthController {
                 return res.status(400).json({ message: 'El email ya esta registrado y verificado' });
             }
 
-            await AuthRepository.register(username, email, hashedPassword, name, surname);
+            await AuthRepository.register(username, email, hashedPassword, name, surname, birthDay, birthMonth, birthYear);
 
             const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-            const URL = `${process.env.FRONTEND_URL}/verify-email/${token}`;
+            const URL = `${process.env.FRONTEND_URL}/verificar-email/${token}`;
 
             await transport.sendMail({
                 from: process.env.EMAIL_USERNAME,
@@ -43,7 +47,7 @@ class AuthController {
             res.status(201).json({ message: 'Usuario registrado exitosamente. Verifica tu email para iniciar sesión' });
         }
         catch (error) {
-            res.status(500).json({ message: error });
+            res.status(500).json({ message: error.message || 'Error al registrar el usuario' });
         }
     }
 
@@ -81,7 +85,7 @@ class AuthController {
             res.json({ message: 'Email verified successfully' });
         }
         catch (error) {
-            res.status(500).json({ message: 'Error verifying email', error });
+            res.status(500).json({ message: 'Error verifying email', error: error.message });
         }
     }
 
@@ -127,7 +131,12 @@ class AuthController {
                 username: userFounded.username,
                 email: userFounded.email,
                 name: userFounded.name,
-                surname: userFounded.surname
+                photo: userFounded.photo,
+                bio: userFounded.bio,
+                surname: userFounded.surname,
+                birthDay: userFounded.birthDay,
+                birthMonth: userFounded.birthMonth,
+                birthYear: userFounded.birthYear
             };
 
             res.json({ message: 'Dashboard accessed successfully', user: userFoundedData });
