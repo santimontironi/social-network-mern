@@ -12,26 +12,26 @@ class AuthController {
                 return res.status(400).json({ message: 'Todos los campos son obligatorios' });
             }
 
-            // Fecha actual para comparar con la fecha de nacimiento
+            // fecha actual para comparar con la fecha de nacimiento
             const today = new Date();
 
-            // Construimos la fecha de nacimiento (birthMonth - 1 porque los meses en JS van de 0 a 11)
+            // construimos la fecha de nacimiento (birthMonth - 1 porque los meses en JS van de 0 a 11)
             const birthDate = new Date(birthYear, birthMonth - 1, birthDay);
 
-            // Diferencia de años entre hoy y el año de nacimiento (aún sin ajustar)
+            // diferencia de años entre hoy y el año de nacimiento
             const age = today.getFullYear() - birthDate.getFullYear();
 
-            // Verificamos si el usuario ya cumplió años este año:
+            // verificamos si el usuario ya cumplió años este año:
             // true si el mes actual es posterior al mes de cumpleaños,
             // o si estamos en el mismo mes pero el día actual es igual o posterior al día de cumpleaños
             const hasHadBirthdayThisYear =
                 today.getMonth() > birthDate.getMonth() ||
                 (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
 
-            // Si aún no cumplió años este año, la edad real es un año menos
+            // si aún no cumplió años este año, la edad real es un año menos
             const actualAge = hasHadBirthdayThisYear ? age : age - 1;
 
-            // Si el usuario tiene menos de 13 años, bloqueamos el registro
+            // si el usuario tiene menos de 13 años, bloqueamos el registro
             if (actualAge < 13) {
                 return res.status(400).json({ message: 'Debes tener al menos 13 años para registrarte' });
             }
