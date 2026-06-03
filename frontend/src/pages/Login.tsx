@@ -28,7 +28,7 @@ const Login = () => {
   }, [user, navigate])
 
   return (
-    <section className="min-h-screen overflow-y-auto flex items-start md:items-center justify-center bg-[#1D6FA4] px-4 pt-25 pb-8 md:pt-6 md:pb-6">
+    <section className="min-h-screen overflow-y-auto flex items-start md:items-center justify-center bg-[#1D6FA4] px-4 pt-25 pb-8 md:pt-20 md:pb-6">
 
       <div className="pointer-events-none fixed inset-0 overflow-hidden opacity-[0.14]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -56,28 +56,28 @@ const Login = () => {
           src="/images/mate.png" alt=""
           className="absolute invert mix-blend-screen
                      bottom-[18%] left-[1%] w-14 opacity-[0.18] rotate-[-14deg]
-                     md:top-[25%] md:bottom-auto md:left-[3%] md:w-30 md:opacity-40"
+                     md:top-[25%] md:bottom-auto md:left-[3%] md:w-30 md:opacity-40 xl:left-[10%]"
         />
 
         <img
           src="/images/sombrero.png" alt=""
           className="absolute invert mix-blend-screen
                      bottom-[16%] right-[1%] w-16 opacity-[0.18] rotate-[8deg]
-                     md:top-[24%] md:bottom-auto md:right-[4%] md:w-41.25 md:opacity-[0.38]"
+                     md:top-[24%] md:bottom-auto md:right-[4%] md:w-41.25 md:opacity-[0.38] xl:right-[10%]"
         />
 
         <img
           src="/images/caballo.png" alt=""
           className="absolute invert mix-blend-screen
                      bottom-[3%] right-[1%] w-16 opacity-[0.15] rotate-2
-                     md:bottom-[10%] md:right-[0%] md:w-42.5 md:opacity-[0.42]"
+                     md:bottom-[10%] md:right-[0%] md:w-42.5 md:opacity-[0.42] xl:right-[10%]"
         />
 
         <img
           src="/images/guitarra.png" alt=""
           className="absolute invert mix-blend-screen
                      bottom-[2%] left-[1%] w-14 opacity-[0.15] rotate-[-10deg]
-                     md:bottom-[8%] md:left-[4%] md:w-38.5 md:opacity-40"
+                     md:bottom-[8%] md:left-[4%] md:w-38.5 md:opacity-40 xl:left-[10%]"
         />
 
       </div>
@@ -96,8 +96,8 @@ const Login = () => {
           <div className="pointer-events-none absolute bottom-0 -left-8 w-28 h-28 rounded-full border border-[#111827]/15" />
 
           <div className="relative flex flex-col items-center gap-2">
-            <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-[#F0F8FF] backdrop-blur-sm border border-[#111827]/60 shadow-[0_4px_20px_rgba(17,24,39,0.5)]">
-              <img src="/images/logo.png" alt="Argentex" className="w-100 object-contain" />
+            <div className="flex items-center justify-center w-20 h-20 rounded-2xl bg-[#F0F8FF] backdrop-blur-sm border border-[#111827]/60 shadow-[0_4px_20px_rgba(17,24,39,0.5)]">
+              <img src="/images/logo.png" alt="Argentex" className="w-30 object-contain" />
             </div>
             <div className="text-center">
               <h1 className="text-[#F0F8FF] font-bold text-2xl tracking-tight">Iniciá sesión</h1>

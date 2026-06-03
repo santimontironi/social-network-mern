@@ -7,7 +7,7 @@ type LoggedUser = LoginUserResponse['user']
 interface contextAuthType {
     registerUser: (data: RegisterUserData) => Promise<RegisterUserResponse>
     verifyEmail: (token: string) => Promise<void>
-    loginUser: (data: LoginUserData) => Promise<LoginUserResponse>
+    loginUser: (data: LoginUserData) => Promise<void>
     user: LoggedUser | null
     loading: LoadingAuth
 }
@@ -57,7 +57,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         try{
             const res = await LoginService(data)
             setUser(res.data.user)
-            return res.data
         }
         catch(error){
             throw error
