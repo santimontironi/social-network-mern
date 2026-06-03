@@ -22,7 +22,7 @@ const Register = () => {
   }
 
   return (
-    <section className="min-h-screen overflow-y-auto flex items-center justify-center bg-[#1D6FA4] px-4 py-6">
+    <section className="min-h-screen overflow-y-auto flex items-start md:items-center justify-center bg-[#1D6FA4] px-4 pt-24 pb-8 md:pt-8 md:pb-8">
 
       <div className="pointer-events-none fixed inset-0 overflow-hidden opacity-[0.14]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -36,12 +36,21 @@ const Register = () => {
         </svg>
       </div>
 
+      <div
+        className="pointer-events-none absolute top-0 left-0 right-0 opacity-90 h-15"
+        style={{
+          backgroundImage: "url('/images/guardapampa.jpeg')",
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
 
         <img
           src="/images/pava-mate.png" alt=""
           className="absolute invert mix-blend-screen
-                     top-[6%] left-[1%] w-14 opacity-[0.18] rotate-[-12deg]
+                     top-[6%] left-[1%] w-14 opacity-[0.18] -rotate-12
                      md:top-[18%] md:left-[3%] md:w-32 md:opacity-[0.38] xl:left-[10%]"
         />
 
@@ -69,7 +78,7 @@ const Register = () => {
 
       <div className="relative w-full max-w-lg shadow-[0_16px_64px_rgba(17,24,39,0.6)] mb-8 sm:mb-16 rounded-2xl overflow-hidden">
 
-        <div className="relative overflow-hidden rounded-t-2xl bg-[#74ACDF]/30 border-x border-t border-[#111827]/40 border-b-0 px-8 pt-5 pb-6 backdrop-blur-sm">
+        <div className="relative overflow-hidden rounded-t-2xl bg-[#74ACDF]/30 border-x border-t border-[#111827]/40 border-b-0 px-4 md:px-8 pt-5 pb-6 backdrop-blur-sm">
           <div className="pointer-events-none absolute -top-6 -right-6 w-36 h-36 rounded-full border-2 border-[#111827]/20" />
           <div className="pointer-events-none absolute -top-10 -right-10 w-52 h-52 rounded-full border border-[#111827]/10" />
           <div className="pointer-events-none absolute bottom-0 -left-8 w-28 h-28 rounded-full border border-[#111827]/15" />
@@ -79,13 +88,13 @@ const Register = () => {
               <img src="/images/logo.png" alt="Argentex" className="w-100 object-contain" />
             </div>
             <div className="text-center">
-              <h1 className="text-[#F0F8FF] font-bold text-2xl tracking-tight">Crear cuenta</h1>
-              <p className="text-[#F0F8FF]/70 text-sm mt-1">Unite a la red argentina</p>
+              <h1 className="text-[#F0F8FF] font-bold text-2xl tracking-tight">¡Sumáte al paisanaje!</h1>
+              <p className="text-[#F0F8FF]/70 text-sm mt-1">Registrate y conectá con tus paisanos</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-[#111827]/30 backdrop-blur-sm rounded-b-2xl border-x border-b border-[#111827]/40 border-t-0 px-8 pt-4 pb-5">
+        <div className="bg-[#111827]/30 backdrop-blur-sm rounded-b-2xl border-x border-b border-[#111827]/40 border-t-0 px-4 md:px-8 pt-4 pb-5">
 
           {messageRegister && (
             <div className="flex items-center gap-3 mb-5 px-4 py-3 rounded-xl bg-[#F0F8FF]/15 border border-[#F0F8FF]/25">

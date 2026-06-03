@@ -28,7 +28,7 @@ const Login = () => {
   }, [user, navigate])
 
   return (
-    <section className="min-h-screen overflow-y-auto flex items-start md:items-center justify-center bg-[#1D6FA4] px-4 pt-25 pb-8 md:pt-20 md:pb-6">
+    <section className="min-h-screen overflow-y-auto flex items-start md:items-center justify-center bg-[#1D6FA4] px-4 pt-24 pb-8 md:pt-8 md:pb-8">
 
       <div className="pointer-events-none fixed inset-0 overflow-hidden opacity-[0.14]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -43,10 +43,11 @@ const Login = () => {
       </div>
 
       <div
-        className="pointer-events-none fixed top-0 left-0 right-0 opacity-90 h-20 md:h-30"
+        className="pointer-events-none absolute top-0 left-0 right-0 opacity-90 h-15"
         style={{
-          backgroundImage: "url('/images/guardapampa.png')",
-          backgroundSize: 'auto 100%',
+          backgroundImage: "url('/images/guardapampa.jpeg')",
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
         }}
       />
 
@@ -69,15 +70,15 @@ const Login = () => {
         <img
           src="/images/caballo.png" alt=""
           className="absolute invert mix-blend-screen
-                     bottom-[3%] right-[1%] w-16 opacity-[0.15] rotate-2
-                     md:bottom-[10%] md:right-[0%] md:w-42.5 md:opacity-[0.42] xl:right-[10%]"
+                     bottom-[3%] left-[1%] w-16 opacity-[0.15] rotate-2
+                     md:bottom-[10%] md:left-[0%] md:w-42.5 md:opacity-[0.42] xl:left-[10%]"
         />
 
         <img
           src="/images/guitarra.png" alt=""
           className="absolute invert mix-blend-screen
-                     bottom-[2%] left-[1%] w-14 opacity-[0.15] rotate-[-10deg]
-                     md:bottom-[8%] md:left-[4%] md:w-38.5 md:opacity-40 xl:left-[10%]"
+                     bottom-[2%] right-[1%] w-14 opacity-[0.15] rotate-[-10deg]
+                     md:bottom-[8%] md:right-[4%] md:w-38.5 md:opacity-40 xl:right-[10%]"
         />
 
       </div>
@@ -100,8 +101,8 @@ const Login = () => {
               <img src="/images/logo.png" alt="Argentex" className="w-30 object-contain" />
             </div>
             <div className="text-center">
-              <h1 className="text-[#F0F8FF] font-bold text-2xl tracking-tight">Iniciá sesión</h1>
-              <p className="text-[#F0F8FF]/70 text-sm mt-1">Bienvenido de vuelta</p>
+              <h1 className="text-[#F0F8FF] font-bold text-2xl tracking-tight">¡Bienvenido de vuelta, paisano!</h1>
+              <p className="text-[#F0F8FF]/70 text-sm mt-1">Tu paisanaje te está esperando</p>
             </div>
           </div>
         </div>
