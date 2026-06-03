@@ -24,6 +24,43 @@ const Register = () => {
   return (
     <section className="min-h-screen overflow-y-auto flex items-center justify-center bg-[#1D6FA4] px-4 py-6">
 
+      <div className="pointer-events-none fixed inset-0 overflow-hidden opacity-[0.14]">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="diamonds" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <polygon points="16,2 30,16 16,30 2,16" fill="none" stroke="#F0F8FF" strokeWidth="1"/>
+              <polygon points="16,10 22,16 16,22 10,16" fill="#F0F8FF" fillOpacity="0.3"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#diamonds)"/>
+        </svg>
+      </div>
+
+      <div className="pointer-events-none fixed inset-0 overflow-hidden">
+
+        <img
+          src="/images/pava-mate.png" alt=""
+          className="absolute invert mix-blend-screen
+                     top-[6%] left-[1%] w-14 opacity-[0.18] rotate-[-12deg]
+                     md:top-[18%] md:left-[3%] md:w-32 md:opacity-[0.38] xl:left-[10%]"
+        />
+
+        <img
+          src="/images/gaucho.png" alt=""
+          className="absolute invert mix-blend-screen
+                     top-[5%] right-[1%] w-16 opacity-[0.18] rotate-[8deg]
+                     md:top-[20%] md:right-[4%] md:w-40 md:opacity-[0.38] xl:right-[10%]"
+        />
+
+        <img
+          src="/images/tero.png" alt=""
+          className="absolute invert mix-blend-screen
+                     bottom-[3%] left-[1%] w-14 opacity-[0.15] rotate-[-8deg]
+                     md:bottom-[8%] md:left-[4%] md:w-38 md:opacity-[0.38] xl:left-[10%]"
+        />
+
+      </div>
+
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <div className="absolute -top-32 -left-32 w-125 h-125 rounded-full border border-[#F0F8FF]/5" />
         <div className="absolute -bottom-40 -right-40 w-150 h-150 rounded-full border border-[#F0F8FF]/5" />
