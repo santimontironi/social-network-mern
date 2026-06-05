@@ -22,7 +22,7 @@ const Register = () => {
   }
 
   return (
-    <section className="min-h-screen overflow-y-auto flex items-start md:items-center justify-center bg-[#1D6FA4] px-4 pt-24 pb-8 md:pt-8 md:pb-8">
+    <section className="min-h-screen overflow-y-auto flex items-start justify-center bg-[#1D6FA4] px-4 pt-28 pb-10 md:pt-24 md:pb-12">
 
       <div className="pointer-events-none fixed inset-0 overflow-hidden opacity-[0.14]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -62,10 +62,10 @@ const Register = () => {
         />
 
         <img
-          src="/images/tero.png" alt=""
+          src="/images/hornero.png" alt=""
           className="absolute invert mix-blend-screen
-                     bottom-[3%] left-[1%] w-14 opacity-[0.15] rotate-[-8deg]
-                     md:bottom-[8%] md:left-[4%] md:w-38 md:opacity-[0.38] xl:left-[10%]"
+                     bottom-[7%] left-[1%] w-14 opacity-[0.15] rotate-[-8deg]
+                     md:bottom-[12%] md:left-[4%] md:w-38 md:opacity-[0.38] xl:left-[10%]"
         />
 
       </div>
