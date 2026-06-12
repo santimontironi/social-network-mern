@@ -169,6 +169,16 @@ class AuthController {
             res.status(500).json({ message: 'Error accessing dashboard', error });
         }
     }
+
+    async logout(req, res) {
+        try{
+            res.clearCookie('token', { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax' });
+            res.json({ message: 'Logout successful' });
+        }
+        catch (error) {
+            res.status(500).json({ message: 'Error logging out', error });
+        }
+    }
 }
 
 const authController = new AuthController();

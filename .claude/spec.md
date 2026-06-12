@@ -113,21 +113,24 @@ frontend/
 ├── src/
 │   ├── assets/               # Recursos importados en código
 │   ├── components/
-│   │   ├── Sidebar.tsx       # Navegación lateral
+│   │   ├── Sidebar.tsx       # Navegación lateral (controla la sección activa de Home)
 │   │   └── VerifyAuth.tsx    # HOC de rutas protegidas
 │   ├── context/
 │   │   └── AuthContext.tsx   # Estado global de autenticación
 │   ├── hooks/
 │   │   └── authContextHook.tsx
 │   ├── pages/
-│   │   ├── Home.tsx
+│   │   ├── Home.tsx          # Dashboard: Sidebar + sección activa (ver "Navegación por secciones")
+│   │   ├── AddPost.tsx        # Sección "nueva-publicacion"
+│   │   ├── MyProfile.tsx      # Sección "perfil"
 │   │   ├── Login.tsx
 │   │   ├── Register.tsx
 │   │   └── VerifyUser.tsx
 │   ├── services/
 │   │   └── auth.service.ts   # Llamadas HTTP a la API de auth
 │   ├── types/
-│   │   └── auth.types.ts     # Tipos TypeScript de autenticación
+│   │   ├── auth.types.ts     # Tipos TypeScript de autenticación
+│   │   └── props.types.ts    # Tipos de props compartidos (sectionsType, SidebarProps)
 │   ├── App.tsx               # Rutas principales
 │   ├── index.css             # @import "tailwindcss"
 │   └── main.tsx              # Entry point React
@@ -136,6 +139,26 @@ frontend/
 ├── tsconfig.json
 └── package.json
 ```
+
+---
+
+## Navegación por Secciones (Home)
+
+`Home.tsx` es un dashboard de una sola ruta (`/inicio`). No usa sub-rutas de React Router para las áreas internas: mantiene un estado `activeSection` (tipo `sectionsType` en `types/props.types.ts`) que decide qué se renderiza en el área principal, mientras `Sidebar.tsx` controla ese estado.
+
+```ts
+type sectionsType = 'inicio' | 'notificaciones' | 'paisanaje' | 'nueva-publicacion' | 'perfil'
+```
+
+| Sección | Componente / contenido |
+|---|---|
+| `inicio` | Feed de publicaciones (placeholder, pendiente de implementar) |
+| `notificaciones` | Notificaciones (placeholder, pendiente de implementar) |
+| `paisanaje` | Gestión de paisanaje (placeholder, pendiente de implementar) |
+| `nueva-publicacion` | `pages/AddPost.tsx` |
+| `perfil` | `pages/MyProfile.tsx` |
+
+> Nuevas pantallas del dashboard (feed, notificaciones, paisanaje) se agregan como componentes/páginas propias y se enchufan como una nueva rama condicional dentro de `Home.tsx`, no como rutas nuevas en `App.tsx`.
 
 ---
 
@@ -221,6 +244,7 @@ frontend/
 |---|---|---|
 | POST | `/register` | Registro de nuevo paisano |
 | POST | `/login` | Login, devuelve JWT en cookie |
+| POST | `/logout` | Cierra sesión, limpia la cookie del JWT |
 | GET | `/dashboard` | Ruta protegida (requiere token) |
 | GET | `/verify-email/:token` | Verificación de email |
 

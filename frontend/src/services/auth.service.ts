@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { RegisterUserData, RegisterUserResponse, LoginUserData, LoginUserResponse, dashboardResponse } from '../types/auth.types'
+import type { RegisterUserData, RegisterUserResponse, LoginUserData, dashboardResponse } from '../types/auth.types'
 
 const API_URL = import.meta.env.VITE_BACKEND_API
 
@@ -12,9 +12,13 @@ export const VerifyEmailService = async (token: string) => {
 }
 
 export const LoginService = async (data: LoginUserData) => {
-    return await axios.post<LoginUserResponse>(`${API_URL}/login`, data, { withCredentials: true })
+    return await axios.post(`${API_URL}/login`, data, { withCredentials: true })
 }
 
 export const DashboardService = async () => {
     return await axios.get<dashboardResponse>(`${API_URL}/dashboard`, { withCredentials: true })
+}
+
+export const LogoutService = async () => {
+    return await axios.post(`${API_URL}/logout`, {}, { withCredentials: true })
 }

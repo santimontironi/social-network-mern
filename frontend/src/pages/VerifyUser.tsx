@@ -25,7 +25,6 @@ const VerifyUser = () => {
     return (
         <section className="min-h-screen overflow-y-auto flex items-center justify-center bg-[#1D6FA4] px-4 py-6">
 
-            {/* Decoraciones de fondo */}
             <div className="pointer-events-none fixed inset-0 overflow-hidden">
                 <div className="absolute -top-32 -left-32 w-125 h-125 rounded-full border border-[#F0F8FF]/5" />
                 <div className="absolute -bottom-40 -right-40 w-150 h-150 rounded-full border border-[#F0F8FF]/5" />
@@ -34,7 +33,6 @@ const VerifyUser = () => {
 
             <div className="relative w-full max-w-lg shadow-[0_16px_64px_rgba(17,24,39,0.6)] rounded-2xl overflow-hidden">
 
-                {/* Header del card */}
                 <div className="relative overflow-hidden rounded-t-2xl bg-[#74ACDF]/30 border-x border-t border-[#111827]/40 border-b-0 px-8 pt-5 pb-6 backdrop-blur-sm">
                     <div className="pointer-events-none absolute -top-6 -right-6 w-36 h-36 rounded-full border-2 border-[#111827]/20" />
                     <div className="pointer-events-none absolute -top-10 -right-10 w-52 h-52 rounded-full border border-[#111827]/10" />
@@ -51,10 +49,8 @@ const VerifyUser = () => {
                     </div>
                 </div>
 
-                {/* Body del card */}
                 <div className="bg-[#111827]/30 backdrop-blur-sm rounded-b-2xl border-x border-b border-[#111827]/40 border-t-0 px-8 pt-6 pb-7">
 
-                    {/* Estado de carga */}
                     {!success && !error && (
                         <div className="flex flex-col items-center gap-4 py-4">
                             <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#74ACDF]/20 border border-[#F0F8FF]/15">
@@ -67,7 +63,6 @@ const VerifyUser = () => {
                         </div>
                     )}
 
-                    {/* Estado de éxito */}
                     {success && (
                         <div className="flex flex-col items-center gap-5 py-4">
                             <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#F0F8FF]/15 border border-[#F0F8FF]/25">
@@ -90,7 +85,6 @@ const VerifyUser = () => {
                         </div>
                     )}
 
-                    {/* Estado de error */}
                     {error && (
                         <div className="flex flex-col items-center gap-5 py-4">
                             <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#111827]/40 border border-[#111827]/60">

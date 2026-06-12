@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../hooks/authContextHook'
 import type { RegisterUserData } from '../types/auth.types'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
-  const { registerUser, loading } = useAuth()
+
+  const navigate = useNavigate()
+
+  const { registerUser, loading, user } = useAuth()
   const { register, handleSubmit, formState: { errors } } = useForm<RegisterUserData>()
 
   const [serverError, setServerError] = useState<string | null>(null)
@@ -20,6 +24,12 @@ const Register = () => {
       setServerError(error.response?.data?.message || 'Error al registrar el usuario')
     }
   }
+
+  useEffect(() => {
+    if (user) {
+      navigate('/inicio')
+    }
+  }, [user])
 
   return (
     <section className="min-h-screen overflow-y-auto flex items-start justify-center bg-[#1D6FA4] px-4 pt-28 pb-10 md:pt-24 md:pb-12">
@@ -199,13 +209,12 @@ const Register = () => {
                 </span>
                 <input
                   type="password"
-                  placeholder="Mínimo 6 caracteres"
+                  placeholder="**********"
                   className={`w-full pl-9 pr-3 py-2.5 rounded-xl border bg-[#111827]/50 text-[#F0F8FF] placeholder-[#F0F8FF]/25 outline-none transition duration-200
                     focus:bg-[#111827]/60
                     ${errors.password ? 'border-red-400/60 bg-red-900/30' : 'border-[#111827]/60 '}`}
                   {...register('password', {
-                    required: 'La contraseña es obligatoria',
-                    minLength: { value: 6, message: 'La contraseña debe tener al menos 6 caracteres' },
+                    required: 'La contraseña es obligatoria'
                   })}
                 />
               </div>

@@ -1,14 +1,13 @@
 import { createContext, useState, useEffect } from "react";
-import { RegisterService, VerifyEmailService, LoginService, DashboardService } from "../services/auth.service";
-import type { RegisterUserData, RegisterUserResponse, LoginUserData, LoginUserResponse, LoadingAuth } from "../types/auth.types";
-
-type LoggedUser = LoginUserResponse['user']
+import { RegisterService, VerifyEmailService, LoginService, DashboardService, LogoutService } from "../services/auth.service";
+import type { RegisterUserData, RegisterUserResponse, LoginUserData, LoadingAuth, User } from "../types/auth.types";
 
 interface contextAuthType {
     registerUser: (data: RegisterUserData) => Promise<RegisterUserResponse>
     verifyEmail: (token: string) => Promise<void>
     loginUser: (data: LoginUserData) => Promise<void>
-    user: LoggedUser | null
+    logoutUser: () => Promise<void>
+    user: User | null
     loading: LoadingAuth
 }
 
@@ -16,7 +15,7 @@ const AuthContext = createContext<contextAuthType | null>(null)
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
-    const [user, setUser] = useState<LoggedUser | null>(null)
+    const [user, setUser] = useState<User | null>(null)
 
     const [loading, setLoading] = useState<LoadingAuth>({
         register: false,
@@ -88,8 +87,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         fetchUser()
     }, [])
 
+    async function logoutUser() {
+        try{
+            await LogoutService()
+            setUser(null)
+        }
+        catch(error){
+            throw error
+        }
+    }
+
     return (
-        <AuthContext.Provider value={{ registerUser, verifyEmail, loginUser, user, loading }}>
+        <AuthContext.Provider value={{ registerUser, verifyEmail, loginUser, logoutUser, user, loading }}>
             {children}
         </AuthContext.Provider>
     )
