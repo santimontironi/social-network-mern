@@ -2,8 +2,7 @@ import mongoose from 'mongoose';
 
 const postSchema = new mongoose.Schema({
     description: {
-        type: String,
-        required: true
+        type: String
     },
     fk_user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -11,14 +10,12 @@ const postSchema = new mongoose.Schema({
         required: true
     },
     photo: {
-        type: String
+        type: String,
+        required: true
     },
     active: {
         type: Boolean,
         default: true
-    },
-    bio: {
-        type: String
     }
 }, {
     timestamps: true

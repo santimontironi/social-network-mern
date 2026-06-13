@@ -1,7 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import router from "./routes/auth.routes.js";
+import { router as authRouter } from "./routes/auth.routes.js";
+import { router as postRouter } from "./routes/post.routes.js";
 import cookieParser from "cookie-parser";
 
 dotenv.config();
@@ -21,6 +22,7 @@ app.use(
 
 app.use(cookieParser());
 
-app.use("", router);
+app.use("", authRouter);
+app.use("", postRouter);
 
 export default app;
