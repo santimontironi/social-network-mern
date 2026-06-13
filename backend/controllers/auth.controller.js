@@ -127,10 +127,24 @@ class AuthController {
 
             res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax' });
 
-            res.json({ message: 'Login successful', user: { id: user.id, username: user.username, email: user.email } });
+            const userData = {
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                name: user.name,
+                photo: user.photo,
+                bio: user.bio,
+                surname: user.surname,
+                birthDay: user.birthDay,
+                birthMonth: user.birthMonth,
+                birthYear: user.birthYear,
+                createdAt: user.createdAt
+            };
+
+            res.json({ message: 'Login successful', user: userData });
         }
         catch (error) {
-            res.status(500).json({ message: 'Error logging in', error });
+            res.status(500).json({ message: error.message });
         }
     }
 

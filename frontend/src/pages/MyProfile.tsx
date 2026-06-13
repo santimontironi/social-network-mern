@@ -82,7 +82,6 @@ const MyProfile = () => {
             </p>
           </div>
 
-          {/* Bio */}
           <div className="mt-5 max-w-2xl">
             <p className="text-[#F0F8FF]/70 text-sm leading-relaxed">
               <i className="bi bi-quote text-[#74ACDF] mr-1"></i>

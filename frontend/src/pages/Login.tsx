@@ -17,7 +17,7 @@ const Login = () => {
       await loginUser(data)
       navigate('/inicio')
     } catch (error: any) {
-      setServerError(error.response?.data?.message || 'Error al iniciar sesión')
+      setServerError(error.response?.data?.message)
     }
   }
 

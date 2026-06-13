@@ -70,15 +70,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             setLoading(prev => ({ ...prev, home: true }))
             try{
                 const res = await DashboardService()
-                if(res.data.user){
-                    setUser(res.data.user)
-                }
-                else{
-                    setUser(null)
-                }
+                setUser(res.data.user)
             }
             catch(error){
-                throw error
+                setUser(null)
             }
             finally {
                 setLoading(prev => ({ ...prev, home: false }))

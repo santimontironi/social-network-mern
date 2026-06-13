@@ -22,7 +22,7 @@ app.use(
 
 app.use(cookieParser());
 
-app.use("/api", authRouter);
-app.use("/api", postRouter);
+app.use("", authRouter);
+app.use("", postRouter);
 
 export default app;
