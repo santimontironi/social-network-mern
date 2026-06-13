@@ -3,7 +3,7 @@ import { useAuth } from '../hooks/authContextHook'
 import type { SidebarProps, sectionsType } from '../types/props.types'
 
 const navLinkClass = (isActive: boolean) =>
-  `flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group cursor-pointer ${
+  `relative flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group cursor-pointer ${
     isActive
       ? 'text-[#F0F8FF] bg-[#1D6FA4]/60 border border-[#74ACDF]/40 shadow-[0_2px_10px_rgba(29,111,164,0.35)]'
       : 'text-[#F0F8FF]/55 border border-transparent hover:text-[#F0F8FF] hover:bg-[#1D6FA4]/25 hover:border-[#74ACDF]/15 hover:shadow-[0_2px_8px_rgba(29,111,164,0.2)]'
@@ -11,6 +11,11 @@ const navLinkClass = (isActive: boolean) =>
 
 const iconClass = (isActive: boolean) =>
   `text-base w-5 shrink-0 transition-colors duration-200 ${isActive ? 'text-[#74ACDF]' : 'group-hover:text-[#74ACDF]'}`
+
+const activeIndicatorClass = (isActive: boolean) =>
+  `absolute left-0 top-1/2 -translate-y-1/2 w-1 rounded-full bg-[#74ACDF] transition-all duration-200 ${
+    isActive ? 'h-5 opacity-100' : 'h-0 opacity-0'
+  }`
 
 const Sidebar = ({ activeSection, setActiveSection }: SidebarProps) => {
   
@@ -36,7 +41,7 @@ const Sidebar = ({ activeSection, setActiveSection }: SidebarProps) => {
       
       <div
         onClick={() => setIsOpen(false)}
-        className={`lg:hidden fixed inset-0 bg-black/50 z-30 transition-opacity duration-300 ${
+        className={`lg:hidden fixed inset-0 bg-[#111827]/60 backdrop-blur-sm z-30 transition-opacity duration-300 ${
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       />
@@ -47,7 +52,7 @@ const Sidebar = ({ activeSection, setActiveSection }: SidebarProps) => {
         bg-[#111827] border-r border-[#74ACDF]/20
         flex flex-col justify-between shrink-0
         shadow-[4px_0_24px_rgba(17,24,39,0.5)]
-        transition-transform duration-300 ease-in-out
+        transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
         ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}>
         <div>
@@ -77,7 +82,7 @@ const Sidebar = ({ activeSection, setActiveSection }: SidebarProps) => {
                 </div>
                 <div className="min-w-0 flex-1 flex items-center justify-between gap-2">
                   <p className="text-[#F0F8FF] font-semibold text-sm truncate">@{user.username}</p>
-                  <span className="shrink-0 text-[#74ACDF] text-xs font-medium bg-[#1D6FA4]/30 border border-[#74ACDF]/30 rounded-full px-3 py-2">
+                  <span className="shrink-0 text-[#74ACDF] text-xs font-medium bg-[#1D6FA4]/30 border border-[#74ACDF]/30 rounded-full px-2.5 py-1">
                     paisano
                   </span>
                 </div>
@@ -87,21 +92,25 @@ const Sidebar = ({ activeSection, setActiveSection }: SidebarProps) => {
 
           <nav className="px-3 mt-1 flex flex-col gap-1">
             <button onClick={() => navigate('inicio')} className={navLinkClass(activeSection === 'inicio')}>
+              <span className={activeIndicatorClass(activeSection === 'inicio')} />
               <i className={`bi bi-house-fill ${iconClass(activeSection === 'inicio')}`} />
               Inicio
             </button>
 
             <button onClick={() => navigate('paisanaje')} className={navLinkClass(activeSection === 'paisanaje')}>
+              <span className={activeIndicatorClass(activeSection === 'paisanaje')} />
               <i className={`bi bi-people-fill ${iconClass(activeSection === 'paisanaje')}`} />
               Mi paisanaje
             </button>
 
             <button onClick={() => navigate('nueva-publicacion')} className={navLinkClass(activeSection === 'nueva-publicacion')}>
+              <span className={activeIndicatorClass(activeSection === 'nueva-publicacion')} />
               <i className={`bi bi-plus-circle-fill ${iconClass(activeSection === 'nueva-publicacion')}`} />
               Nueva publicación
             </button>
 
             <button onClick={() => navigate('perfil')} className={navLinkClass(activeSection === 'perfil')}>
+              <span className={activeIndicatorClass(activeSection === 'perfil')} />
               <i className={`bi bi-person-circle ${iconClass(activeSection === 'perfil')}`} />
               Mi perfil
             </button>

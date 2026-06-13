@@ -25,22 +25,43 @@ const VerifyUser = () => {
     return (
         <section className="min-h-screen overflow-y-auto flex items-center justify-center bg-[#1D6FA4] px-4 py-6">
 
+            <div className="pointer-events-none fixed inset-0 overflow-hidden opacity-[0.14]">
+                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="diamonds" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+                            <polygon points="16,2 30,16 16,30 2,16" fill="none" stroke="#F0F8FF" strokeWidth="1"/>
+                            <polygon points="16,10 22,16 16,22 10,16" fill="#F0F8FF" fillOpacity="0.3"/>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#diamonds)"/>
+                </svg>
+            </div>
+
+            <div
+                className="pointer-events-none absolute top-0 left-0 right-0 opacity-90 h-15"
+                style={{
+                    backgroundImage: "url('/images/guardapampa.jpeg')",
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                }}
+            />
+
             <div className="pointer-events-none fixed inset-0 overflow-hidden">
                 <div className="absolute -top-32 -left-32 w-125 h-125 rounded-full border border-[#F0F8FF]/5" />
                 <div className="absolute -bottom-40 -right-40 w-150 h-150 rounded-full border border-[#F0F8FF]/5" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 rounded-full bg-[#74ACDF]/10 blur-[80px]" />
             </div>
 
-            <div className="relative w-full max-w-lg shadow-[0_16px_64px_rgba(17,24,39,0.6)] rounded-2xl overflow-hidden">
+            <div className="relative w-full max-w-lg shadow-[0_16px_64px_rgba(17,24,39,0.6)] rounded-2xl overflow-hidden animate-auth-card">
 
-                <div className="relative overflow-hidden rounded-t-2xl bg-[#74ACDF]/30 border-x border-t border-[#111827]/40 border-b-0 px-8 pt-5 pb-6 backdrop-blur-sm">
+                <div className="relative overflow-hidden rounded-t-2xl bg-[#74ACDF]/30 border-x border-t border-[#111827]/40 border-b-0 px-4 md:px-8 pt-5 pb-6 backdrop-blur-sm">
                     <div className="pointer-events-none absolute -top-6 -right-6 w-36 h-36 rounded-full border-2 border-[#111827]/20" />
                     <div className="pointer-events-none absolute -top-10 -right-10 w-52 h-52 rounded-full border border-[#111827]/10" />
                     <div className="pointer-events-none absolute bottom-0 -left-8 w-28 h-28 rounded-full border border-[#111827]/15" />
 
                     <div className="relative flex flex-col items-center gap-2">
-                        <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-[#F0F8FF] border border-[#111827]/60 shadow-[0_4px_20px_rgba(17,24,39,0.5)]">
-                            <img src="/images/logo.png" alt="Argentex" className="w-100 object-contain" />
+                        <div className="flex items-center justify-center w-20 h-20 rounded-2xl bg-[#F0F8FF] backdrop-blur-sm border border-[#111827]/60 shadow-[0_4px_20px_rgba(17,24,39,0.5)]">
+                            <img src="/images/logo.png" alt="Argentex" className="w-14 object-contain" />
                         </div>
                         <div className="text-center">
                             <h1 className="text-[#F0F8FF] font-bold text-2xl tracking-tight">Verificación de cuenta</h1>
@@ -49,7 +70,7 @@ const VerifyUser = () => {
                     </div>
                 </div>
 
-                <div className="bg-[#111827]/30 backdrop-blur-sm rounded-b-2xl border-x border-b border-[#111827]/40 border-t-0 px-8 pt-6 pb-7">
+                <div className="bg-[#111827]/30 backdrop-blur-sm rounded-b-2xl border-x border-b border-[#111827]/40 border-t-0 px-4 md:px-8 pt-4 pb-5">
 
                     {!success && !error && (
                         <div className="flex flex-col items-center gap-4 py-4">
@@ -76,7 +97,7 @@ const VerifyUser = () => {
                                 href="/login"
                                 className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl
                                     bg-[#F0F8FF] text-[#1D6FA4] font-semibold
-                                    hover:bg-[#F0F8FF]/90 hover:shadow-[0_0_24px_rgba(240,248,255,0.2)]
+                                    hover:bg-[#F0F8FF]/90 hover:shadow-[0_0_24px_rgba(240,248,255,0.2)] hover:scale-[1.01]
                                     active:scale-[0.98] transition-all duration-300"
                             >
                                 <i className="bi bi-box-arrow-in-right text-base"></i>

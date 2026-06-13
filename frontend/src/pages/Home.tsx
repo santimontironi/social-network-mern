@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div className="flex h-screen bg-[#1D6FA4]/10">
       <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />
-      <main className="flex-1 overflow-y-auto">
+      <main className="flex-1 overflow-y-auto bg-[#111827] bg-[radial-gradient(ellipse_at_top,rgba(116,172,223,0.12),transparent_55%)]">
         {activeSection === 'inicio' && <div className="p-6">Inicio</div>}
         {activeSection === 'paisanaje' && <div className="p-6">Mi paisanaje</div>}
         {activeSection === 'notificaciones' && <div className="p-6">Notificaciones</div>}

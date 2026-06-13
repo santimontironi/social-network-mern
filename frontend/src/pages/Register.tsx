@@ -32,7 +32,7 @@ const Register = () => {
   }, [user])
 
   return (
-    <section className="min-h-screen overflow-y-auto flex items-start justify-center bg-[#1D6FA4] px-4 pt-28 pb-10 md:pt-24 md:pb-12">
+    <section className="min-h-screen overflow-y-auto flex items-start justify-center bg-[#1D6FA4] px-4 pt-28 pb-10 md:pt-24 md:pb-12 xl:pb-0">
 
       <div className="pointer-events-none fixed inset-0 overflow-hidden opacity-[0.14]">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -86,7 +86,7 @@ const Register = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 rounded-full bg-[#74ACDF]/10 blur-[80px]" />
       </div>
 
-      <div className="relative w-full max-w-lg shadow-[0_16px_64px_rgba(17,24,39,0.6)] mb-8 sm:mb-16 rounded-2xl overflow-hidden">
+      <div className="relative w-full max-w-lg shadow-[0_16px_64px_rgba(17,24,39,0.6)] mb-8 sm:mb-16 rounded-2xl overflow-hidden animate-auth-card">
 
         <div className="relative overflow-hidden rounded-t-2xl bg-[#74ACDF]/30 border-x border-t border-[#111827]/40 border-b-0 px-4 md:px-8 pt-5 pb-6 backdrop-blur-sm">
           <div className="pointer-events-none absolute -top-6 -right-6 w-36 h-36 rounded-full border-2 border-[#111827]/20" />
@@ -94,8 +94,8 @@ const Register = () => {
           <div className="pointer-events-none absolute bottom-0 -left-8 w-28 h-28 rounded-full border border-[#111827]/15" />
 
           <div className="relative flex flex-col items-center gap-2">
-            <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-[#F0F8FF] backdrop-blur-sm border border-[#111827]/60 shadow-[0_4px_20px_rgba(17,24,39,0.5)]">
-              <img src="/images/logo.png" alt="Argentex" className="w-100 object-contain" />
+            <div className="flex items-center justify-center w-20 h-20 rounded-2xl bg-[#F0F8FF] backdrop-blur-sm border border-[#111827]/60 shadow-[0_4px_20px_rgba(17,24,39,0.5)]">
+              <img src="/images/logo.png" alt="Argentex" className="w-14 object-contain" />
             </div>
             <div className="text-center">
               <h1 className="text-[#F0F8FF] font-bold text-2xl tracking-tight">¡Sumáte al paisanaje!</h1>
@@ -134,7 +134,7 @@ const Register = () => {
                     type="text"
                     placeholder="Nombre"
                     className={`w-full pl-8 pr-3 py-2.5 rounded-xl border bg-[#111827]/50 text-[#F0F8FF] placeholder-[#F0F8FF]/25 outline-none transition duration-200
-                      focus:bg-[#111827]/60
+                      focus:bg-[#111827]/60 focus:border-[#74ACDF]/60 focus:ring-2 focus:ring-[#74ACDF]/20
                       ${errors.name ? 'border-red-400/60 bg-red-900/30' : 'border-[#111827]/60'}`}
                     {...register('name', { required: 'Obligatorio' })}
                   />
@@ -152,7 +152,7 @@ const Register = () => {
                     type="text"
                     placeholder="Apellido"
                     className={`w-full pl-8 pr-3 py-2.5 rounded-xl border bg-[#111827]/50 text-[#F0F8FF] placeholder-[#F0F8FF]/25 outline-none transition duration-200
-                      focus:bg-[#111827]/60
+                      focus:bg-[#111827]/60 focus:border-[#74ACDF]/60 focus:ring-2 focus:ring-[#74ACDF]/20
                       ${errors.surname ? 'border-red-400/60 bg-red-900/30' : 'border-[#111827]/60 '}`}
                     {...register('surname', { required: 'Obligatorio' })}
                   />
@@ -172,7 +172,7 @@ const Register = () => {
                   type="text"
                   placeholder="@tu_usuario"
                   className={`w-full pl-9 pr-3 py-2.5 rounded-xl border bg-[#111827]/50 text-[#F0F8FF] placeholder-[#F0F8FF]/25 outline-none transition duration-200
-                    focus:bg-[#111827]/60
+                    focus:bg-[#111827]/60 focus:border-[#74ACDF]/60 focus:ring-2 focus:ring-[#74ACDF]/20
                     ${errors.username ? 'border-red-400/60 bg-red-900/30' : 'border-[#111827]/60 '}`}
                   {...register('username', { required: 'El nombre de usuario es obligatorio' })}
                 />
@@ -190,7 +190,7 @@ const Register = () => {
                   type="email"
                   placeholder="correo@ejemplo.com"
                   className={`w-full pl-9 pr-3 py-2.5 rounded-xl border bg-[#111827]/50 text-[#F0F8FF] placeholder-[#F0F8FF]/25 outline-none transition duration-200
-                    focus:bg-[#111827]/60
+                    focus:bg-[#111827]/60 focus:border-[#74ACDF]/60 focus:ring-2 focus:ring-[#74ACDF]/20
                     ${errors.email ? 'border-red-400/60 bg-red-900/30' : 'border-[#111827]/60 '}`}
                   {...register('email', {
                     required: 'El email es obligatorio',
@@ -211,7 +211,7 @@ const Register = () => {
                   type="password"
                   placeholder="**********"
                   className={`w-full pl-9 pr-3 py-2.5 rounded-xl border bg-[#111827]/50 text-[#F0F8FF] placeholder-[#F0F8FF]/25 outline-none transition duration-200
-                    focus:bg-[#111827]/60
+                    focus:bg-[#111827]/60 focus:border-[#74ACDF]/60 focus:ring-2 focus:ring-[#74ACDF]/20
                     ${errors.password ? 'border-red-400/60 bg-red-900/30' : 'border-[#111827]/60 '}`}
                   {...register('password', {
                     required: 'La contraseña es obligatoria'
@@ -231,7 +231,7 @@ const Register = () => {
                   min={1}
                   max={31}
                   className={`w-full px-3 py-2.5 rounded-xl border bg-[#111827]/50 text-[#F0F8FF] placeholder-[#F0F8FF]/25 outline-none transition duration-200 text-center
-                    focus:bg-[#111827]/60
+                    focus:bg-[#111827]/60 focus:border-[#74ACDF]/60 focus:ring-2 focus:ring-[#74ACDF]/20
                     ${errors.birthDay ? 'border-red-400/60 bg-red-900/30' : 'border-[#111827]/60 '}`}
                   {...register('birthDay', { required: 'Obligatorio', min: { value: 1, message: 'Mín. 1' }, max: { value: 31, message: 'Máx. 31' }, valueAsNumber: true })}
                 />
@@ -246,7 +246,7 @@ const Register = () => {
                   min={1}
                   max={12}
                   className={`w-full px-3 py-2.5 rounded-xl border bg-[#111827]/50 text-[#F0F8FF] placeholder-[#F0F8FF]/25 outline-none transition duration-200 text-center
-                    focus:bg-[#111827]/60
+                    focus:bg-[#111827]/60 focus:border-[#74ACDF]/60 focus:ring-2 focus:ring-[#74ACDF]/20
                     ${errors.birthMonth ? 'border-red-400/60 bg-red-900/30' : 'border-[#111827]/60 '}`}
                   {...register('birthMonth', { required: 'Obligatorio', min: { value: 1, message: 'Mín. 1' }, max: { value: 12, message: 'Máx. 12' }, valueAsNumber: true })}
                 />
@@ -261,7 +261,7 @@ const Register = () => {
                   min={1900}
                   max={2025}
                   className={`w-full px-3 py-2.5 rounded-xl border bg-[#111827]/50 text-[#F0F8FF] placeholder-[#F0F8FF]/25 outline-none transition duration-200 text-center
-                    focus:bg-[#111827]/60
+                    focus:bg-[#111827]/60 focus:border-[#74ACDF]/60 focus:ring-2 focus:ring-[#74ACDF]/20
                     ${errors.birthYear ? 'border-red-400/60 bg-red-900/30' : 'border-[#111827]/60 '}`}
                   {...register('birthYear', { required: 'Obligatorio', min: { value: 1900, message: 'Mín. 1900' }, max: { value: 2025, message: 'Máx. 2025' }, valueAsNumber: true })}
                 />
@@ -275,9 +275,9 @@ const Register = () => {
               disabled={loading.register}
               className="w-full py-2.5 rounded-xl font-semibold transition-all duration-300
                 bg-[#F0F8FF] text-[#1D6FA4]
-                hover:bg-[#F0F8FF]/90 hover:shadow-[0_0_24px_rgba(240,248,255,0.2)]
+                hover:bg-[#F0F8FF]/90 hover:shadow-[0_0_24px_rgba(240,248,255,0.2)] hover:scale-[1.01]
                 active:scale-[0.98] cursor-pointer group
-                disabled:opacity-60 disabled:cursor-not-allowed"
+                disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               {loading.register ? (
                 <span className="flex items-center justify-center gap-2">
