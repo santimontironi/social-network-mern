@@ -1,9 +1,9 @@
 import { createContext, useState, useEffect } from "react";
 import { RegisterService, VerifyEmailService, LoginService, DashboardService, LogoutService } from "../services/auth.service";
-import type { RegisterUserData, RegisterUserResponse, LoginUserData, LoadingAuth, User } from "../types/auth.types";
+import type { RegisterUserResponse, LoginUserData, LoadingAuth, User } from "../types/auth.types";
 
 interface contextAuthType {
-    registerUser: (data: RegisterUserData) => Promise<RegisterUserResponse>
+    registerUser: (data: FormData) => Promise<RegisterUserResponse>
     verifyEmail: (token: string) => Promise<void>
     loginUser: (data: LoginUserData) => Promise<void>
     logoutUser: () => Promise<void>
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         home: false
     })
 
-    const registerUser = async (data: RegisterUserData) => {
+    const registerUser = async (data: FormData) => {
         setLoading(prev => ({ ...prev, register: true }))
         try{
             const res = await RegisterService(data)

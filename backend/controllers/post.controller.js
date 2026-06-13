@@ -18,7 +18,7 @@ class PostController {
                 const b64 = Buffer.from(req.file.buffer).toString('base64')
                 const dataURI = `data:${req.file.mimetype};base64,${b64}`
 
-                const uploadResult = await cloudinaryConfig.uploader.upload(dataURI, { folder: 'argentex' });
+                const uploadResult = await cloudinary.uploader.upload(dataURI, { folder: 'argentex' });
 
                 imageUrl = uploadResult.secure_url;
             } else {

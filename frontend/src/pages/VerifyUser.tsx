@@ -94,7 +94,7 @@ const VerifyUser = () => {
                                 <p className="text-[#F0F8FF]/60 text-sm mt-1">{success}</p>
                             </div>
                             <a
-                                href="/login"
+                                href="/"
                                 className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl
                                     bg-[#F0F8FF] text-[#1D6FA4] font-semibold
                                     hover:bg-[#F0F8FF]/90 hover:shadow-[0_0_24px_rgba(240,248,255,0.2)] hover:scale-[1.01]

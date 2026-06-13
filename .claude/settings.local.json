@@ -22,7 +22,8 @@
       "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Usuario\\\\Desktop\\\\Programacion\\\\PROYECTOS FULLSTACK\\\\red-social\" -Recurse -Force | ForEach-Object { $_.FullName -replace [regex]::Escape\\(\"C:\\\\Users\\\\Usuario\\\\Desktop\\\\Programacion\\\\PROYECTOS FULLSTACK\\\\red-social\"\\), \".\" } | Sort-Object)",
       "Bash(ls -la logo.png)",
       "Bash(file logo.png)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(node -e ' *)"
     ]
   }
 }

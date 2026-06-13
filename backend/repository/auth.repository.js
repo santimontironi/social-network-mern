@@ -1,8 +1,8 @@
 import User from '../models/user.model.js';
 
 class AuthRepository {
-    async register(username, email, password, name, surname, birthDay, birthMonth, birthYear) {
-        const user = new User({ username, email, password, name, surname, birthDay, birthMonth, birthYear });
+    async register(username, email, password, name, surname, birthDay, birthMonth, birthYear, photo, bio) {
+        const user = new User({ username, email, password, name, surname, birthDay, birthMonth, birthYear, photo, bio });
         await user.save();
         return user;
     }

@@ -9,7 +9,7 @@ const Register = () => {
   const navigate = useNavigate()
 
   const { registerUser, loading, user } = useAuth()
-  const { register, handleSubmit, formState: { errors } } = useForm<RegisterUserData>()
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<RegisterUserData>()
 
   const [serverError, setServerError] = useState<string | null>(null)
   const [messageRegister, setMessageRegister] = useState<string | null>(null)
@@ -18,10 +18,31 @@ const Register = () => {
     setServerError(null)
     setMessageRegister(null)
     try {
-      const res = await registerUser(data)
+      const formData = new FormData()
+      formData.append('username', data.username)
+      formData.append('email', data.email)
+      formData.append('password', data.password)
+      formData.append('name', data.name)
+      formData.append('surname', data.surname)
+      formData.append('birthDay', String(data.birthDay))
+      formData.append('birthMonth', String(data.birthMonth))
+      formData.append('birthYear', String(data.birthYear))
+
+      if (data.photo && data.photo.length > 0) {
+        formData.append('photo', data.photo[0])
+      }
+
+      if (data.bio) {
+        formData.append('bio', data.bio)
+      }
+
+      const res = await registerUser(formData)
       setMessageRegister(res.message)
+
+      reset()
     } catch (error: any) {
       setServerError(error.response?.data?.message || 'Error al registrar el usuario')
+      reset()
     }
   }
 
@@ -121,6 +142,42 @@ const Register = () => {
           )}
 
           <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-4">
+
+            <div className="flex flex-col gap-1">
+              <label className="text-[#F0F8FF]/70 text-xs font-medium uppercase tracking-wide">Foto de perfil</label>
+              <div className="relative group">
+                <span className="absolute inset-y-0 left-3 flex items-center text-[#F0F8FF]/40 pointer-events-none transition group-focus-within:text-[#F0F8FF]/80">
+                  <i className="bi bi-image-fill text-sm"></i>
+                </span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  className={`w-full pl-9 pr-3 py-2.5 rounded-xl border bg-[#111827]/50 text-[#F0F8FF]/70 text-sm outline-none transition duration-200 cursor-pointer
+                    file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:bg-[#74ACDF]/30 file:text-[#F0F8FF] file:text-xs file:font-medium file:cursor-pointer
+                    focus:bg-[#111827]/60 focus:border-[#74ACDF]/60 focus:ring-2 focus:ring-[#74ACDF]/20
+                    ${errors.photo ? 'border-red-400/60 bg-red-900/30' : 'border-[#111827]/60'}`}
+                  {...register('photo', { required: 'La foto de perfil es obligatoria' })}
+                />
+              </div>
+              {errors.photo && <span className="text-red-300 text-xs flex items-center gap-1"><i className="bi bi-exclamation-circle text-xs"></i>{errors.photo.message}</span>}
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-[#F0F8FF]/70 text-xs font-medium uppercase tracking-wide">Biografía (opcional)</label>
+              <div className="relative group">
+                <span className="absolute top-2.5 left-3 flex items-center text-[#F0F8FF]/40 pointer-events-none transition group-focus-within:text-[#F0F8FF]/80">
+                  <i className="bi bi-card-text text-sm"></i>
+                </span>
+                <textarea
+                  placeholder="Contanos algo sobre vos..."
+                  rows={2}
+                  className="w-full pl-9 pr-3 py-2.5 rounded-xl border bg-[#111827]/50 text-[#F0F8FF] placeholder-[#F0F8FF]/25 outline-none transition duration-200 resize-none
+                    focus:bg-[#111827]/60 focus:border-[#74ACDF]/60 focus:ring-2 focus:ring-[#74ACDF]/20
+                    border-[#111827]/60"
+                  {...register('bio')}
+                />
+              </div>
+            </div>
 
             <div className="grid grid-cols-2 gap-3">
 

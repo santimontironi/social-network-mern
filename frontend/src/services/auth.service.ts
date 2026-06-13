@@ -1,10 +1,12 @@
 import axios from 'axios'
-import type { RegisterUserData, RegisterUserResponse, LoginUserData, dashboardResponse } from '../types/auth.types'
+import type { RegisterUserResponse, LoginUserData, dashboardResponse } from '../types/auth.types'
 
 const API_URL = import.meta.env.VITE_BACKEND_API
 
-export const RegisterService = async (data: RegisterUserData) => {
-    return await axios.post<RegisterUserResponse>(`${API_URL}/register`, data)
+export const RegisterService = async (data: FormData) => {
+    return await axios.post<RegisterUserResponse>(`${API_URL}/register`, data, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+    })
 }
 
 export const VerifyEmailService = async (token: string) => {

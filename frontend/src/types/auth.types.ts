@@ -7,6 +7,8 @@ export interface RegisterUserData{
     birthDay: number;
     birthMonth: number;
     birthYear: number;
+    photo?: FileList;
+    bio?: string;
 }
 
 export interface RegisterUserResponse{
@@ -24,6 +26,9 @@ export interface User {
     email: string;
     name: string;
     surname: string;
+    photo: string;
+    bio: string;
+    createdAt: string;
 }
 
 export interface LoadingAuth {

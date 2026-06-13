@@ -2,34 +2,23 @@ import AuthRepository from '../repository/auth.repository.js';
 import bycrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import transport from '../config/email.config.js';
+import cloudinary from '../config/cloudinary.config.js';
+import { calculateAge } from '../utils/age.util.js';
 
 class AuthController {
     async register(req, res) {
         try{
-            const { username, email, password, name, surname, birthDay, birthMonth, birthYear } = req.body;
+            const { username, email, password, name, surname, birthDay, birthMonth, birthYear, bio } = req.body;
 
             if(!username || !email || !password || !name || !surname || !birthDay || !birthMonth || !birthYear) {
                 return res.status(400).json({ message: 'Todos los campos son obligatorios' });
             }
 
-            // fecha actual para comparar con la fecha de nacimiento
-            const today = new Date();
+            if (!req.file) {
+                return res.status(400).json({ message: 'La foto de perfil es obligatoria' });
+            }
 
-            // construimos la fecha de nacimiento (birthMonth - 1 porque los meses en JS van de 0 a 11)
-            const birthDate = new Date(birthYear, birthMonth - 1, birthDay);
-
-            // diferencia de años entre hoy y el año de nacimiento
-            const age = today.getFullYear() - birthDate.getFullYear();
-
-            // verificamos si el usuario ya cumplió años este año:
-            // true si el mes actual es posterior al mes de cumpleaños,
-            // o si estamos en el mismo mes pero el día actual es igual o posterior al día de cumpleaños
-            const hasHadBirthdayThisYear =
-                today.getMonth() > birthDate.getMonth() ||
-                (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
-
-            // si aún no cumplió años este año, la edad real es un año menos
-            const actualAge = hasHadBirthdayThisYear ? age : age - 1;
+            const actualAge = calculateAge(birthDay, birthMonth, birthYear);
 
             // si el usuario tiene menos de 13 años, bloqueamos el registro
             if (actualAge < 13) {
@@ -55,7 +44,12 @@ class AuthController {
                 return res.status(400).json({ message: 'El email ya esta registrado y verificado' });
             }
 
-            await AuthRepository.register(username, email, hashedPassword, name, surname, birthDay, birthMonth, birthYear);
+            const b64 = Buffer.from(req.file.buffer).toString('base64');
+            const dataURI = `data:${req.file.mimetype};base64,${b64}`;
+
+            const uploadResult = await cloudinary.uploader.upload(dataURI, { folder: 'argentex' });
+
+            await AuthRepository.register(username, email, hashedPassword, name, surname, birthDay, birthMonth, birthYear, uploadResult.secure_url, bio);
 
             const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
@@ -160,7 +154,8 @@ class AuthController {
                 surname: userFounded.surname,
                 birthDay: userFounded.birthDay,
                 birthMonth: userFounded.birthMonth,
-                birthYear: userFounded.birthYear
+                birthYear: userFounded.birthYear,
+                createdAt: userFounded.createdAt
             };
 
             res.json({ message: 'Dashboard accessed successfully', user: userFoundedData });

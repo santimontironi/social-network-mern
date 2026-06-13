@@ -24,7 +24,8 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     photo: {
-        type: String
+        type: String,
+        required: true
     },
     bio: {
         type: String
