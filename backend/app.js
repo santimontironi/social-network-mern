@@ -1,9 +1,9 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import {router as authRouter} from './routes/auth.routes.js';
-import {router as postRouter} from './routes/post.routes.js';
-import cookieParser from 'cookie-parser';
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import { router as authRouter } from "./routes/auth.routes.js";
+import { router as postRouter } from "./routes/post.routes.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -11,18 +11,18 @@ const app = express();
 
 app.use(express.json());
 
-app.use(cors(
-    {
-        origin: process.env.FRONTEND_URL,
-        methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-        allowedHeaders: ['Content-Type', 'Authorization'],
-        credentials: true
-    }
-));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  }),
+);
 
 app.use(cookieParser());
 
-app.use('', authRouter);
-app.use('', postRouter);
+app.use("/api", authRouter);
+app.use("/api", postRouter);
 
 export default app;
